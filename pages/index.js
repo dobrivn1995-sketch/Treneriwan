@@ -34,6 +34,14 @@ export default function Home() {
       loc1: "RMG — Sandomierska 112, Kielce",
       loc2: "Endorfina — Zagnańska 92, Kielce",
       maps: "Google Maps",
+      formTitle: "Залиш заявку — я напишу особисто",
+      formName: "Ім’я",
+      formContact: "Телефон або Email",
+      formType: "Вибери варіант",
+      formOption1: "Тренування в Кельце",
+      formOption2: "Онлайн-ведення",
+      formMsg: "Коментар (необов’язково)",
+      formSend: "Надіслати заявку 💪",
       footerTitle: "Написати мені",
       footerBrand: "© " + new Date().getFullYear() + " Trener Iwan — Discipline. Power. Balance.",
       lang: "🇺🇦",
@@ -65,6 +73,14 @@ export default function Home() {
       loc1: "RMG — Sandomierska 112, Kielce",
       loc2: "Endorfina — Zagnańska 92, Kielce",
       maps: "Google Maps",
+      formTitle: "Zostaw zgłoszenie — odezwę się osobiście",
+      formName: "Imię",
+      formContact: "Telefon lub Email",
+      formType: "Wybierz opcję",
+      formOption1: "Trening w Kielcach",
+      formOption2: "Prowadzenie online",
+      formMsg: "Komentarz (opcjonalnie)",
+      formSend: "Wyślij zgłoszenie 💪",
       footerTitle: "Napisz do mnie",
       footerBrand: "© " + new Date().getFullYear() + " Trener Iwan — Discipline. Power. Balance.",
       lang: "🇵🇱",
@@ -86,20 +102,7 @@ export default function Home() {
 
   const wrap = { background: "#0b0f14", color: "#eef3f8" };
   const max = { maxWidth: 1160, margin: "0 auto", padding: "0 20px" };
-  const hero = { padding: "56px 0 32px", background: "#0b0f14", textAlign: "center" };
-  const badge = {
-    display: "inline-block",
-    padding: "6px 12px",
-    borderRadius: 999,
-    border: "1px solid #263445",
-    color: "#a7c7e9",
-    fontSize: 12,
-    marginBottom: 12,
-  };
-  const h1 = { fontSize: 50, fontWeight: 900, margin: "12px 0 6px", color: "#ffffff" };
-  const h2 = { fontSize: 32, fontWeight: 800, margin: "0 0 18px", color: "#27a6ff" };
-  const lead = { opacity: 0.92, fontSize: 18, lineHeight: 1.6, marginBottom: 22 };
-
+  const section = { padding: "44px 0", borderTop: "1px solid #151e29", textAlign: "center" };
   const btn = {
     padding: "14px 24px",
     borderRadius: 14,
@@ -113,171 +116,47 @@ export default function Home() {
   };
   const btnPrimary = { ...btn, background: "#ff8a00", borderColor: "#ff8a00", color: "#0b0f14" };
 
-  const section = { padding: "44px 0", borderTop: "1px solid #151e29", textAlign: "center" };
-  const title = { fontSize: 28, fontWeight: 900, marginBottom: 14 };
-  const note = { color: "#9bb7d4", marginBottom: 18 };
-  const priceTag = { fontWeight: 900, fontSize: 20, color: "#ffd7a6" };
-  const highlight = {
-    border: "2px solid #ff8a00",
-    borderRadius: 14,
-    padding: 16,
-    marginTop: 10,
-    display: "inline-block",
-  };
-  const strike = { textDecoration: "line-through", opacity: 0.6, marginRight: 8 };
-
   return (
     <div style={wrap}>
       <Head>
         <title>{t.h1} — Trener Iwan | Kielce</title>
-        <meta
-          name="description"
-          content="Персональні тренування в Кельце та онлайн. 9 років досвіду. RMG і Endorfina. Онлайн 500 zł/міс."
-        />
       </Head>
 
-      {/* TOP BAR */}
-      <div
-        style={{
-          ...max,
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          height: 56,
-        }}
-      >
-        <div style={{ fontWeight: 900, fontSize: 20 }}>
-          <span style={{ color: "#fff" }}>TRENER</span>{" "}
-          <span style={{ color: "#ff8a00" }}>IWAN</span>
-        </div>
-        <button
-          onClick={switchLang}
-          style={{
-            ...btn,
-            borderRadius: 999,
-            padding: "8px 14px",
-            fontSize: 16,
-            border: "1px solid #27a6ff",
-            background: "transparent",
-          }}
-        >
-          {t.lang} ↔ {t.langAlt}
-        </button>
-      </div>
-
-      {/* HERO */}
-      <header style={hero}>
-        <span style={badge}>{t.badge}</span>
-        <h1 style={h1}>{t.h1}</h1>
-        <h2 style={h2}>{t.h2}</h2>
-        <p style={lead}>{t.heroLead}</p>
-        <div>
-          <a href={wa} target="_blank" rel="noreferrer" style={btnPrimary}>
-            {t.ctaBook}
-          </a>
-        </div>
-      </header>
-
-      {/* ABOUT */}
+      {/* ФОРМА ЗАЯВКИ */}
       <section style={section}>
         <div style={max}>
-          <h3 style={title}>{t.aboutTitle}</h3>
-          <p style={{ maxWidth: 700, margin: "0 auto", lineHeight: 1.7 }}>{t.aboutText}</p>
+          <h3 style={{ fontSize: 28, fontWeight: 900, marginBottom: 20 }}>{t.formTitle}</h3>
+          <form
+            action="https://formsubmit.co/Dobr.ivn1995@gmail.com"
+            method="POST"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 12,
+              maxWidth: 400,
+              margin: "0 auto",
+              textAlign: "left",
+            }}
+          >
+            <input type="hidden" name="_subject" value="Нова заявка з сайту treneriwan.pl" />
+            <input type="hidden" name="_captcha" value="false" />
+            <label>{t.formName}</label>
+            <input name="name" required style={{ padding: 10, borderRadius: 8, border: "1px solid #263445" }} />
+            <label>{t.formContact}</label>
+            <input name="contact" required style={{ padding: 10, borderRadius: 8, border: "1px solid #263445" }} />
+            <label>{t.formType}</label>
+            <select name="type" style={{ padding: 10, borderRadius: 8, border: "1px solid #263445" }}>
+              <option>{t.formOption1}</option>
+              <option>{t.formOption2}</option>
+            </select>
+            <label>{t.formMsg}</label>
+            <textarea name="message" rows="3" style={{ padding: 10, borderRadius: 8, border: "1px solid #263445" }} />
+            <button type="submit" style={btnPrimary}>
+              {t.formSend}
+            </button>
+          </form>
         </div>
       </section>
-
-      {/* PRICING */}
-      <section style={section}>
-        <div style={max}>
-          <h3 style={title}>{t.priceTitle}</h3>
-          <div style={note}>{t.priceNote}</div>
-          <p>
-            <b>{t.p1}</b> — {t.p1price}
-          </p>
-          <p>
-            <b>{t.p2}</b> — {t.p2price}
-          </p>
-          <div style={highlight}>
-            <p>
-              <b>{t.p3}</b>
-              <br />
-              <span style={strike}>{t.p3priceOld}</span>
-              {t.p3priceNew}
-            </p>
-          </div>
-          <div style={{ marginTop: 20 }}>
-            <a href={wa} target="_blank" rel="noreferrer" style={btnPrimary}>
-              {t.buyBlock}
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ONLINE */}
-      <section style={section}>
-        <div style={max}>
-          <h3 style={title}>{t.onlineTitle}</h3>
-          <p style={note}>{t.onlineNote}</p>
-        </div>
-      </section>
-
-      {/* LOCATIONS */}
-      <section style={section}>
-        <div style={max}>
-          <h3 style={title}>{t.locTitle}</h3>
-          <p>
-            {t.loc1} —{" "}
-            <a
-              href="https://maps.google.com/?q=Sandomierska+112+Kielce"
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: "#9edbff" }}
-            >
-              {t.maps}
-            </a>
-          </p>
-          <p>
-            {t.loc2} —{" "}
-            <a
-              href="https://maps.google.com/?q=Zagna%C5%84ska+92+Kielce"
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: "#9edbff" }}
-            >
-              {t.maps}
-            </a>
-          </p>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer
-        style={{
-          borderTop: "1px solid #151e29",
-          background: "#0b0f14",
-          textAlign: "center",
-          padding: "36px 0 60px",
-        }}
-      >
-        <div style={{ fontWeight: 900, fontSize: 20, color: "#fff", marginBottom: 16 }}>
-          {t.footerTitle}
-        </div>
-        <div>
-          <a href={tg} target="_blank" rel="noreferrer" style={btn}>
-            ⚡ Telegram
-          </a>
-          <a href={wa} target="_blank" rel="noreferrer" style={btn}>
-            💬 WhatsApp
-          </a>
-          <a href={ig} target="_blank" rel="noreferrer" style={btn}>
-            📷 Instagram
-          </a>
-          <a href={mail} style={btn}>
-            ✉️ Email
-          </a>
-        </div>
-        <div style={{ fontSize: 13, opacity: 0.6, marginTop: 20 }}>{t.footerBrand}</div>
-      </footer>
     </div>
   );
-        }
+}
