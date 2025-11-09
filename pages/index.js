@@ -2,11 +2,13 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 
 export default function Home() {
+  // Links
   const wa = "https://wa.me/48796559143?text=" + encodeURIComponent("Привіт! Хочу тренування");
   const tg = "https://t.me/Grutos";
   const ig = "https://instagram.com/trener_iwan";
   const mail = "mailto:Dobr.ivn1995@gmail.com";
 
+  // i18n
   const dict = {
     ua: {
       badge: "м. Кельце • Персональний тренер",
@@ -17,7 +19,7 @@ export default function Home() {
       ctaBook: "Записатися",
       aboutTitle: "Про мене",
       aboutText:
-        "Я Іван — тренер із 9-річним досвідом. Працюю з початківцями, з відновленням після травм і онлайн. Головний принцип — чиста техніка, результат і повага до тіла.",
+        "Я Іван — тренер із 9-річним досвідом. Працюю з початківцями, з відновленням після травм і онлайн. Принцип — чиста техніка, результат і повага до тіла.",
       priceTitle: "Ціни (Кельце)",
       priceNote: "Зали: RMG і Endorfina. Оплата разово або блоком.",
       p1: "Разове тренування",
@@ -102,9 +104,23 @@ export default function Home() {
     if (typeof window !== "undefined") localStorage.setItem("lang", next);
   };
 
+  // Styles
   const wrap = { background: "#0b0f14", color: "#eef3f8" };
   const max = { maxWidth: 1160, margin: "0 auto", padding: "0 20px" };
-  const section = { padding: "44px 0", borderTop: "1px solid #151e29", textAlign: "center" };
+  const hero = { padding: "56px 0 32px", textAlign: "center" };
+  const badge = {
+    display: "inline-block",
+    padding: "6px 12px",
+    borderRadius: 999,
+    border: "1px solid #263445",
+    color: "#a7c7e9",
+    fontSize: 12,
+    marginBottom: 12,
+  };
+  const h1 = { fontSize: 50, fontWeight: 900, margin: "12px 0 6px", color: "#ffffff" };
+  const h2 = { fontSize: 32, fontWeight: 800, margin: "0 0 18px", color: "#27a6ff" };
+  const lead = { opacity: 0.92, fontSize: 18, lineHeight: 1.6, marginBottom: 22 };
+
   const btn = {
     padding: "14px 24px",
     borderRadius: 14,
@@ -118,58 +134,173 @@ export default function Home() {
   };
   const btnPrimary = { ...btn, background: "#ff8a00", borderColor: "#ff8a00", color: "#0b0f14" };
 
+  const section = { padding: "44px 0", borderTop: "1px solid #151e29", textAlign: "center" };
+  const title = { fontSize: 28, fontWeight: 900, marginBottom: 14 };
+  const note = { color: "#9bb7d4", marginBottom: 18 };
+  const highlight = {
+    border: "2px solid #ff8a00",
+    borderRadius: 14,
+    padding: 16,
+    marginTop: 10,
+    display: "inline-block",
+  };
+  const strike = { textDecoration: "line-through", opacity: 0.6, marginRight: 8 };
+
   return (
     <div style={wrap}>
       <Head>
         <title>{t.h1} — Trener Iwan | Kielce</title>
+        <meta name="description" content="Персональні тренування в Кельце та онлайн. 9 років досвіду. Онлайн-ведення 500 zł/міс." />
       </Head>
 
-      {/* === Весь контент сайту вище (скорочено для зручності) === */}
-      {/* ONLINE */}
+      {/* TOP BAR */}
+      <div style={{ ...max, display: "flex", justifyContent: "space-between", alignItems: "center", height: 56 }}>
+        <div style={{ fontWeight: 900, fontSize: 20 }}>
+          <span style={{ color: "#fff" }}>TRENER</span>{" "}
+          <span style={{ color: "#ff8a00" }}>IWAN</span>
+        </div>
+        <button
+          onClick={switchLang}
+          style={{ ...btn, borderRadius: 999, padding: "8px 14px", fontSize: 16, border: "1px solid #27a6ff", background: "transparent" }}
+        >
+          {t.lang} ↔ {t.langAlt}
+        </button>
+      </div>
+
+      {/* HERO */}
+      <header style={{ ...hero, borderTop: "1px solid #151e29" }}>
+        <div style={max}>
+          <span style={badge}>{t.badge}</span>
+          <h1 style={h1}>{t.h1}</h1>
+          <h2 style={h2}>{t.h2}</h2>
+          <p style={lead}>{t.heroLead}</p>
+          <div>
+            <a href={wa} target="_blank" rel="noreferrer" style={btnPrimary}>{t.ctaBook}</a>
+          </div>
+        </div>
+      </header>
+
+      {/* ABOUT */}
       <section style={section}>
         <div style={max}>
-          <h3 style={{ fontSize: 28, fontWeight: 900, marginBottom: 20 }}>{t.onlineTitle}</h3>
-          <p style={{ color: "#9bb7d4", marginBottom: 18 }}>{t.onlineNote}</p>
+          <h3 style={title}>{t.aboutTitle}</h3>
+          <p style={{ maxWidth: 700, margin: "0 auto", lineHeight: 1.7 }}>{t.aboutText}</p>
         </div>
       </section>
 
-      {/* 🔥 НОВИЙ БЛОК ФОРМИ */}
+      {/* PRICING */}
       <section style={section}>
         <div style={max}>
-          <h3 style={{ fontSize: 28, fontWeight: 900, marginBottom: 20 }}>{t.formTitle}</h3>
+          <h3 style={title}>{t.priceTitle}</h3>
+          <div style={note}>{t.priceNote}</div>
+          <p><b>{t.p1}</b> —  {t.p1price}</p>
+          <p><b>{t.p2}</b> —  {t.p2price}</p>
+          <div style={highlight}>
+            <p>
+              <b>{t.p3}</b><br />
+              <span style={strike}>{t.p3priceOld}</span>{t.p3priceNew}
+            </p>
+          </div>
+          <div style={{ marginTop: 20 }}>
+            <a href={wa} target="_blank" rel="noreferrer" style={btnPrimary}>{t.buyBlock}</a>
+          </div>
+        </div>
+      </section>
+
+      {/* ONLINE */}
+      <section style={section}>
+        <div style={max}>
+          <h3 style={title}>{t.onlineTitle}</h3>
+          <p style={note}>{t.onlineNote}</p>
+        </div>
+      </section>
+
+      {/* FORM (inside page, framed look) */}
+      <section id="apply" style={section}>
+        <div style={max}>
+          <h3 style={title}>{t.formTitle}</h3>
           <form
             action="https://formsubmit.co/Dobr.ivn1995@gmail.com"
             method="POST"
             style={{
+              maxWidth: 460,
+              margin: "0 auto",
+              padding: 18,
+              border: "2px solid #263445",
+              borderRadius: 16,
+              background: "#0e141c",
               display: "flex",
               flexDirection: "column",
               gap: 12,
-              maxWidth: 400,
-              margin: "0 auto",
               textAlign: "left",
             }}
           >
-            <input type="hidden" name="_subject" value="Нова заявка з сайту treneriwan.pl" />
+            {/* FormSubmit options */}
+            <input type="hidden" name="_subject" value="Нова заявка з сайту treneriwan.vercel.app" />
             <input type="hidden" name="_captcha" value="false" />
+            {/* <input type="hidden" name="_next" value="https://treneriwan.vercel.app/?sent=1#apply" /> */}
+
             <label>{t.formName}</label>
-            <input name="name" required style={{ padding: 10, borderRadius: 8, border: "1px solid #263445" }} />
+            <input name="name" required
+              style={{ padding: 12, borderRadius: 10, border: "1px solid #263445", background: "#0b121a", color: "#eef3f8" }} />
+
             <label>{t.formContact}</label>
-            <input name="contact" required style={{ padding: 10, borderRadius: 8, border: "1px solid #263445" }} />
+            <input name="contact" required
+              style={{ padding: 12, borderRadius: 10, border: "1px solid #263445", background: "#0b121a", color: "#eef3f8" }} />
+
             <label>{t.formType}</label>
-            <select name="type" style={{ padding: 10, borderRadius: 8, border: "1px solid #263445" }}>
+            <select name="type"
+              style={{ padding: 12, borderRadius: 10, border: "1px solid #263445", background: "#0b121a", color: "#eef3f8" }}>
               <option>{t.formOption1}</option>
               <option>{t.formOption2}</option>
             </select>
+
             <label>{t.formMsg}</label>
-            <textarea name="message" rows="3" style={{ padding: 10, borderRadius: 8, border: "1px solid #263445" }} />
-            <button type="submit" style={btnPrimary}>
-              {t.formSend}
-            </button>
+            <textarea name="message" rows={3}
+              style={{ padding: 12, borderRadius: 10, border: "1px solid #263445", background: "#0b121a", color: "#eef3f8" }} />
+
+            <button type="submit" style={{ ...btnPrimary, textAlign: "center" }}>{t.formSend}</button>
           </form>
         </div>
       </section>
 
-      {/* === Далі залишаєш твій футер з іконками як був === */}
+      {/* LOCATIONS */}
+      <section style={section}>
+        <div style={max}>
+          <h3 style={title}>{t.locTitle}</h3>
+          <div style={{ display: "grid", gap: 16 }}>
+            <div style={{ border: "2px solid #263445", borderRadius: 16, padding: 16 }}>
+              <div style={{ fontWeight: 700 }}>{t.loc1}</div>
+              <a href="https://maps.google.com/?q=Sandomierska+112+Kielce" target="_blank" rel="noreferrer" style={{ ...btn, borderRadius: 12 }}>
+                {t.maps}
+              </a>
+            </div>
+            <div style={{ border: "2px solid #263445", borderRadius: 16, padding: 16 }}>
+              <div style={{ fontWeight: 700 }}>{t.loc2}</div>
+              <a href="https://maps.google.com/?q=Zagna%C5%84ska+92+Kielce" target="_blank" rel="noreferrer" style={{ ...btn, borderRadius: 12 }}>
+                {t.maps}
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER with framed, clickable links */}
+      <footer style={{ borderTop: "1px solid #151e29", textAlign: "center", padding: "36px 0 60px" }}>
+        <div style={{ fontWeight: 900, fontSize: 20, color: "#fff", marginBottom: 16 }}>{t.footerTitle}</div>
+        <div>
+          <a href={tg} target="_blank" rel="noreferrer" style={btn}>⚡ Telegram</a>
+          <a href={wa} target="_blank" rel="noreferrer" style={btn}>💬 WhatsApp</a>
+          <a href={ig} target="_blank" rel="noreferrer" style={btn}>📷 Instagram</a>
+          <a href={mail} style={btn}>✉️ Email</a>
+        </div>
+        <div style={{ fontSize: 13, opacity: 0.6, marginTop: 20 }}>{t.footerBrand}</div>
+      </footer>
+
+      {/* Small global hover */}
+      <style jsx global>{`
+        a:hover, button:hover { transform: translateY(-2px); }
+      `}</style>
     </div>
   );
             }
