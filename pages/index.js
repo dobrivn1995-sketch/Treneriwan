@@ -323,16 +323,44 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer style={{ borderTop: "1px solid #151e29", background: "#0b0f14" }}>
-        <div style={{ ...max, display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "space-between", alignItems: "center", padding: "20px 0", color: "#9bb7d4" }}>
-          <div>{t.footer}</div>
-          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-            <a href={ig} target="_blank" rel="noreferrer" style={btnOutline}>Instagram</a>
-            <a href={tg} target="_blank" rel="noreferrer" style={btnOutline}>Telegram</a>
-            <a href={wa} target="_blank" rel="noreferrer" style={btnOutline}>WhatsApp</a>
-          </div>
-        </div>
-      </footer>
+      <{/* FOOTER */}
+<footer style={{ borderTop: "1px solid #151e29", background: "#0b0f14" }}>
+  <div
+    style={{
+      ...max,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      gap: 10,
+      padding: "28px 0",
+      color: "#9bb7d4",
+      textAlign: "center",
+    }}
+  >
+    <div style={{ fontWeight: 900, fontSize: 18, color: "#eaf3ff" }}>
+      {lang === "ua" ? "Написати мені" : "Napisz do mnie"}
     </div>
-  );
-                  }
+
+    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 14, fontSize: 16 }}>
+      <a href={tg} target="_blank" rel="noreferrer" style={{ color: "#7dd3ff", textDecoration: "none" }}>
+        Telegram
+      </a>
+      <span style={{ opacity: 0.4 }}>•</span>
+      <a href={wa} target="_blank" rel="noreferrer" style={{ color: "#ffd7a6", textDecoration: "none" }}>
+        WhatsApp
+      </a>
+      <span style={{ opacity: 0.4 }}>•</span>
+      <a href={ig} target="_blank" rel="noreferrer" style={{ color: "#9edbff", textDecoration: "none" }}>
+        Instagram
+      </a>
+      <span style={{ opacity: 0.4 }}>•</span>
+      <a href={mail} target="_blank" rel="noreferrer" style={{ color: "#f4c27c", textDecoration: "none" }}>
+        Email
+      </a>
+    </div>
+
+    <div style={{ fontSize: 13, opacity: 0.6, marginTop: 10 }}>
+      © {new Date().getFullYear()} Trener Iwan — Discipline. Power. Balance.
+    </div>
+  </div>
+</footer>
