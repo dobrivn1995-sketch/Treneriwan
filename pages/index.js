@@ -2,26 +2,27 @@ import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
 
 export default function Home() {
-  // CONTACT LINKS
-  const wa = "https://wa.me/48796559143?text=" + encodeURIComponent("Привіт! Хочу тренування");
+  // ===== CONTACT LINKS (UTM готові, при бажанні поміняєш) =====
+  const utm = "&utm_source=site&utm_medium=cta&utm_campaign=landing";
+  const wa = "https://wa.me/48796559143?text=" + encodeURIComponent("Привіт! Хочу тренування") + utm;
   const tg = "https://t.me/Grutos";
   const ig = "https://instagram.com/trener_iwan";
   const mail = "mailto:Dobr.ivn1995@gmail.com";
 
-  // i18n
+  // ===== i18n словники =====
   const dict = {
     ua: {
       badge: "м. Кельце • Персональний тренер",
       h1: "Тренуйся з Іваном",
       h2: "LEVEL UP YOUR BODY",
       heroLead:
-        "9 років досвіду. Персональні тренування в Кельце **і онлайн** з нуля. Техніка без болю + стабільний прогрес.",
+        "9 років досвіду. Персональні тренування в Кельце <b>і онлайн</b> з нуля. Техніка без болю + стабільний прогрес.",
       ctaBook: "Записатися",
 
       strengthsTitle: "9 років досвіду. Кельце і онлайн.",
       strengths: ["Чітка техніка", "Керований дискомфорт", "Швидкий прогрес"],
       strengthsNote:
-        "Треную початківців і допомагаю відновитись після травм. Мій підхід — точність, безпека й стабільний результат. Легка крепатура — це норм: тіло адаптується і росте 💪",
+        "Треную початківців і допомагаю відновитись після травм. Підхід — точність, безпека й стабільний результат. Легка крепатура — це норм: тіло адаптується 💪",
 
       aboutTitle: "Про мене",
       aboutText:
@@ -54,25 +55,13 @@ export default function Home() {
 
       reviewsTitle: "Клієнти про роботу",
       reviews: [
-        {
-          name: "Наталія",
-          text: "–8 кг за 2 місяці. Головне — техніка без болю. Дуже комфортно.",
-        },
-        {
-          name: "Олег",
-          text: "Після травми спини повернувся до присідань. Все поступово і безпечно.",
-        },
-        {
-          name: "Марія",
-          text: "Онлайн-ведення: чіткий план + підтримка. Результат є щотижня.",
-        },
+        { name: "Наталія", text: "–8 кг за 2 місяці. Техніка без болю. Комфортно." },
+        { name: "Олег", text: "Після травми спини повернувся до присідань. Безпечно." },
+        { name: "Марія", text: "Онлайн—чіткий план + підтримка. Є результат щотижня." },
       ],
 
       footerTitle: "Написати мені",
-      footerBrand:
-        "© " +
-        new Date().getFullYear() +
-        " Trener Iwan — Discipline. Power. Balance.",
+      footerBrand: `© ${new Date().getFullYear()} Trener Iwan — Discipline. Power. Balance.`,
       lang: "🇺🇦",
       langAlt: "🇵🇱",
       toastSent: "Заявку надіслано ✅ Я відповім особисто.",
@@ -82,17 +71,17 @@ export default function Home() {
       h1: "Trenuj z Iwanem",
       h2: "LEVEL UP YOUR BODY",
       heroLead:
-        "9 lat doświadczenia. Treningi personalne w Kielcach **i online**. Technika bez bólu + systemowy progres.",
+        "9 lat doświadczenia. Treningi w Kielcach <b>i online</b>. Technika bez bólu + systemowy progres.",
       ctaBook: "Zapisz się",
 
       strengthsTitle: "9 lat doświadczenia. Kielce i online.",
       strengths: ["Czysta technika", "Kontrolowany dyskomfort", "Szybki progres"],
       strengthsNote:
-        "Pracuję z początkującymi i po kontuzjach. Stawiam na dokładność, bezpieczeństwo i stabilne efekty. Delikatne DOMS-y są OK — znak adaptacji 💪",
+        "Pracuję z początkującymi i po kontuzjach. Dokładność, bezpieczeństwo i stabilne efekty. Delikatne DOMS-y — ok 💪",
 
       aboutTitle: "O mnie",
       aboutText:
-        "Nazywam się Iwan — trener z 9-letnim doświadczeniem. Pomagam poprawić technikę, zrzucić wagę i wrócić do formy bez kontuzji.",
+        "Jestem Iwan — trener z 9-letnim doświadczeniem. Pomagam poprawić technikę, zrzucić wagę i wrócić do formy bez kontuzji.",
 
       priceTitle: "Cennik (przeliczany wg regionu)",
       priceNote: "Bazą jest PLN. Pokazujemy automatycznie w Twojej walucie.",
@@ -121,48 +110,29 @@ export default function Home() {
 
       reviewsTitle: "Opinie klientów",
       reviews: [
-        {
-          name: "Natalia",
-          text: "–8 kg w 2 miesiące. Technika bez bólu, pełen komfort.",
-        },
-        {
-          name: "Olek",
-          text: "Po kontuzji pleców wróciłem do przysiadów. Bezpiecznie i stopniowo.",
-        },
-        {
-          name: "Maria",
-          text: "Prowadzenie online: konkretny plan + wsparcie. Efekty co tydzień.",
-        },
+        { name: "Natalia", text: "–8 kg w 2 miesiące. Technika bez bólu, komfort." },
+        { name: "Olek", text: "Po kontuzji pleców wróciłem do przysiadów. Bezpiecznie." },
+        { name: "Maria", text: "Prowadzenie online: plan + wsparcie. Efekty co tydzień." },
       ],
 
       footerTitle: "Napisz do mnie",
-      footerBrand:
-        "© " +
-        new Date().getFullYear() +
-        " Trener Iwan — Discipline. Power. Balance.",
+      footerBrand: `© ${new Date().getFullYear()} Trener Iwan — Discipline. Power. Balance.`,
       lang: "🇵🇱",
       langAlt: "🇺🇦",
       toastSent: "Zgłoszenie wysłane ✅ Odezwę się osobiście.",
     },
   };
 
-  // ===== LANGUAGE (Netflix-style) =====
+  // ===== Netflix-style мова =====
   const [lang, setLang] = useState("ua");
   useEffect(() => {
     if (typeof window === "undefined") return;
     const saved = localStorage.getItem("lang");
-    if (saved === "ua" || saved === "pl") {
-      setLang(saved);
-      return;
-    }
-    const userLang = navigator.language || navigator.userLanguage || "";
-    if (userLang.startsWith("pl")) {
-      setLang("pl");
-      localStorage.setItem("lang", "pl");
-    } else {
-      setLang("ua");
-      localStorage.setItem("lang", "ua");
-    }
+    if (saved === "ua" || saved === "pl") return setLang(saved);
+    const L = (navigator.language || "").toLowerCase();
+    const next = L.startsWith("pl") ? "pl" : "ua";
+    setLang(next);
+    localStorage.setItem("lang", next);
   }, []);
   const t = dict[lang];
   const switchLang = () => {
@@ -171,9 +141,9 @@ export default function Home() {
     if (typeof window !== "undefined") localStorage.setItem("lang", next);
   };
 
-  // ===== CURRENCY BY REGION =====
+  // ===== Валюта за регіоном (PLN база) =====
   const [currency, setCurrency] = useState("PLN");
-  const [rate, setRate] = useState({ PLN: 1, EUR: 0.0, UAH: 0.0, USD: 0.0 });
+  const [rate, setRate] = useState({ PLN: 1, EUR: 0.23, USD: 0.25, UAH: 5.9 });
   const symbol = { PLN: "zł", EUR: "€", UAH: "₴", USD: "$" };
 
   useEffect(() => {
@@ -183,9 +153,9 @@ export default function Home() {
     if (savedCur && symbol[savedCur]) setCurrency(savedCur);
 
     fetch("https://ipapi.co/json/")
-      .then((r) => r.json())
-      .then((data) => {
-        const cc = (data && data.country_code) || "";
+      .then(r => r.json())
+      .then(d => {
+        const cc = d?.country_code || "";
         let cur = "EUR";
         if (cc === "PL") cur = "PLN";
         else if (cc === "UA") cur = "UAH";
@@ -194,18 +164,18 @@ export default function Home() {
         localStorage.setItem("currency", cur);
       })
       .catch(() => {
-        const nav = navigator.language || "";
-        if (nav.startsWith("pl")) setCurrency("PLN");
-        else if (nav.startsWith("uk")) setCurrency("UAH");
-        else if (nav.startsWith("en-US")) setCurrency("USD");
+        const L = (navigator.language || "").toLowerCase();
+        if (L.startsWith("pl")) setCurrency("PLN");
+        else if (L.startsWith("uk")) setCurrency("UAH");
+        else if (L.startsWith("en-us")) setCurrency("USD");
         else setCurrency("EUR");
       });
   }, []);
 
   useEffect(() => {
     fetch("https://api.exchangerate.host/latest?base=PLN&symbols=EUR,USD,UAH")
-      .then((r) => r.json())
-      .then((d) => {
+      .then(r => r.json())
+      .then(d => {
         const rts = d?.rates || {};
         setRate({
           PLN: 1,
@@ -214,28 +184,20 @@ export default function Home() {
           UAH: rts.UAH || 5.9,
         });
       })
-      .catch(() =>
-        setRate({ PLN: 1, EUR: 0.23, USD: 0.25, UAH: 5.9 })
-      );
+      .catch(() => {});
   }, []);
 
-  const fmt = (pln) => {
-    const value = Math.round(pln * (rate[currency] || 1));
-    return `${value} ${symbol[currency] || "zł"}`;
-  };
+  const fmt = (pln) => `${Math.round(pln * (rate[currency] || 1))} ${symbol[currency] || "zł"}`;
 
-  // BASE PRICES (PLN)
-  const P = useMemo(
-    () => ({
-      single: 90,
-      pack5: 80,
-      pack10Total: 700,
-      onlineMonth: 500,
-    }),
-    []
-  );
+  // Базові ціни в PLN
+  const P = useMemo(() => ({
+    single: 90,
+    pack5: 80,
+    pack10Total: 700,
+    onlineMonth: 500,
+  }), []);
 
-  // ===== TOAST on success (?sent=1) =====
+  // ===== Toast після ?sent=1 =====
   const [showToast, setShowToast] = useState(false);
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -248,73 +210,95 @@ export default function Home() {
     }
   }, []);
 
-  // ===== STYLES =====
-  const wrap = { background: "#0b0f14", color: "#eef3f8" };
+  // ====== СТИЛІ ======
+  // Преміум фон: градієнти + SVG-патерн (сітка + “інвентар”)
+  const pageBg = {
+    backgroundColor: "#0b0f14",
+    color: "#eef3f8",
+    backgroundImage: `
+      radial-gradient(1200px 600px at 80% -10%, rgba(39,166,255,0.12) 0%, rgba(39,166,255,0) 60%),
+      radial-gradient(900px 500px at -10% 20%, rgba(255,138,0,0.10) 0%, rgba(255,138,0,0) 60%),
+      url("data:image/svg+xml;utf8,
+        <svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'>
+          <rect width='160' height='160' fill='none'/>
+          <path d='M0 40H160 M0 80H160 M0 120H160 M40 0V160 M80 0V160 M120 0V160'
+                stroke='%23151e29' stroke-width='1'/>
+          <g opacity='0.18'>
+            <rect x='18' y='18' rx='3' width='24' height='24' fill='%23263445'/>
+            <rect x='118' y='18' rx='3' width='24' height='24' fill='%23263445'/>
+            <rect x='18' y='118' rx='3' width='24' height='24' fill='%23263445'/>
+            <rect x='118' y='118' rx='3' width='24' height='24' fill='%23263445'/>
+          </g>
+        </svg>")
+    `,
+    backgroundSize: "cover, cover, 160px 160px",
+    backgroundAttachment: "fixed, fixed, scroll",
+  };
+
   const max = { maxWidth: 1160, margin: "0 auto", padding: "0 20px" };
   const section = { padding: "44px 0", borderTop: "1px solid #151e29", textAlign: "center" };
-  const hero = { padding: "56px 0 32px", textAlign: "center" };
+
+  const hero = {
+    padding: "56px 0 32px",
+    textAlign: "center",
+    // Якщо захочеш реальне фото залу — поклади /public/bg-gym.jpg і розкоментуй:
+    // backgroundImage: "linear-gradient(rgba(11,15,20,.85), rgba(11,15,20,.85)), url('/bg-gym.jpg')",
+    // backgroundSize: "cover", backgroundPosition: "center", backgroundAttachment: "fixed",
+  };
+
   const badge = { display: "inline-block", padding: "6px 12px", borderRadius: 999, border: "1px solid #263445", color: "#a7c7e9", fontSize: 12, marginBottom: 12 };
   const h1 = { fontSize: 50, fontWeight: 900, margin: "12px 0 6px", color: "#ffffff" };
   const h2 = { fontSize: 32, fontWeight: 800, margin: "0 0 18px", color: "#27a6ff" };
   const lead = { opacity: 0.92, fontSize: 18, lineHeight: 1.6, marginBottom: 22 };
 
+  // Мірна стрічка під геро
+  const tapeStrip = {
+    height: 22,
+    margin: "8px 0 0",
+    backgroundImage: "repeating-linear-gradient(90deg, #ffbf47 0 20px, #ffbf47 0 20px, #0b0f14 20px 22px)",
+    borderTop: "1px solid #cc922f",
+    borderBottom: "1px solid #cc922f",
+    boxShadow: "0 1px 0 rgba(0,0,0,.3) inset, 0 -1px 0 rgba(0,0,0,.2) inset",
+  };
+
   const btn = { padding: "14px 24px", borderRadius: 14, fontWeight: 700, textDecoration: "none", border: "2px solid #27a6ff", color: "#cfe9ff", display: "inline-flex", alignItems: "center", gap: 10, margin: "6px", transition: "all 0.2s ease" };
   const btnPrimary = { ...btn, background: "#ff8a00", borderColor: "#ff8a00", color: "#0b0f14" };
   const title = { fontSize: 28, fontWeight: 900, marginBottom: 14 };
   const note = { color: "#9bb7d4", marginBottom: 18 };
-  const card = { border: "2px solid #263445", borderRadius: 16, padding: 16 };
+  const card = { border: "2px solid #263445", borderRadius: 16, padding: 16, backdropFilter: "saturate(120%) blur(0.5px)" };
   const highlight = { border: "2px solid #ff8a00", borderRadius: 14, padding: 16, marginTop: 10, display: "inline-block" };
   const strike = { textDecoration: "line-through", opacity: 0.6, marginRight: 8 };
 
-  // SVG icons
+  // SVG іконки
   const Icon = {
-    Telegram: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path d="M21.5 3.5L2.6 10.6c-.8.3-.8 1.4 0 1.7l4.6 1.6 1.7 5c.2.8 1.2.9 1.7.3l2.9-3.1 4.8 3.6c.6.5 1.5.1 1.7-.7l3-17c.2-.9-.7-1.6-1.5-1.4Z" stroke="#cfe9ff" strokeWidth="1.5" />
-      </svg>
-    ),
-    WhatsApp: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path d="M20.5 12a8.5 8.5 0 1 1-3.1-6.6" stroke="#cfe9ff" strokeWidth="1.5" />
-        <path d="M7.2 19.6 5 21l.5-2.6" stroke="#cfe9ff" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M16.8 14.6c-.3.9-1.7 1.1-2.4.9-1.2-.4-2.7-1.4-3.8-2.6s-2.2-2.6-2.6-3.8c-.2-.7 0-2.1.9-2.4.4-.1.8 0 1.1.3l1.1 1.1c.3.3.4.7.3 1.1-.1.4-.3.7-.6 1l.6.9c.5.7 1.2 1.4 1.9 1.9l.9.6c.3-.3.6-.5 1-.6.4-.1.8 0 1.1.3l1.1 1.1c.3.3.4.8.3 1.1Z" fill="none" stroke="#cfe9ff" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    ),
-    Instagram: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <rect x="3.5" y="3.5" width="17" height="17" rx="4" stroke="#cfe9ff" strokeWidth="1.5" />
-        <circle cx="12" cy="12" r="3.5" stroke="#cfe9ff" strokeWidth="1.5" />
-        <circle cx="17.2" cy="6.8" r="1.2" fill="#cfe9ff" />
-      </svg>
-    ),
-    Email: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path d="M3.5 7.5h17v9h-17z" stroke="#cfe9ff" strokeWidth="1.5" />
-        <path d="M4 8l8 5 8-5" stroke="#cfe9ff" strokeWidth="1.5" fill="none" />
-      </svg>
-    ),
+    Telegram: (<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21.5 3.5L2.6 10.6c-.8.3-.8 1.4 0 1.7l4.6 1.6 1.7 5c.2.8 1.2.9 1.7.3l2.9-3.1 4.8 3.6c.6.5 1.5.1 1.7-.7l3-17c.2-.9-.7-1.6-1.5-1.4Z" stroke="#cfe9ff" strokeWidth="1.5"/></svg>),
+    WhatsApp: (<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20.5 12a8.5 8.5 0 1 1-3.1-6.6" stroke="#cfe9ff" strokeWidth="1.5"/><path d="M7.2 19.6 5 21l.5-2.6" stroke="#cfe9ff" strokeWidth="1.5" strokeLinecap="round"/><path d="M16.8 14.6c-.3.9-1.7 1.1-2.4.9-1.2-.4-2.7-1.4-3.8-2.6s-2.2-2.6-2.6-3.8c-.2-.7 0-2.1.9-2.4.4-.1.8 0 1.1.3l1.1 1.1c.3.3.4.7.3 1.1-.1.4-.3.7-.6 1l.6.9c.5.7 1.2 1.4 1.9 1.9l.9.6c.3-.3.6-.5 1-.6.4-.1.8 0 1.1.3l1.1 1.1c.3.3.4.8.3 1.1Z" fill="none" stroke="#cfe9ff" strokeWidth="1.5" strokeLinecap="round"/></svg>),
+    Instagram: (<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="3.5" width="17" height="17" rx="4" stroke="#cfe9ff" strokeWidth="1.5"/><circle cx="12" cy="12" r="3.5" stroke="#cfe9ff" strokeWidth="1.5"/><circle cx="17.2" cy="6.8" r="1.2" fill="#cfe9ff"/></svg>),
+    Email: (<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3.5 7.5h17v9h-17z" stroke="#cfe9ff" strokeWidth="1.5"/><path d="M4 8l8 5 8-5" stroke="#cfe9ff" strokeWidth="1.5" fill="none"/></svg>)
   };
 
   return (
-    <div style={wrap}>
+    <div style={pageBg}>
       <Head>
         <title>{t.h1} — Trener Iwan | Kielce</title>
         <meta name="description" content="Персональні тренування в Кельце і онлайн. Автомова та валюта за регіоном. 9 років досвіду." />
+        <link rel="icon" href="/favicon.ico" />
         {/* Open Graph / Twitter */}
         <meta property="og:title" content="Trener Iwan — Kielce & Online" />
         <meta property="og:description" content="Чітка техніка. Керований дискомфорт. Швидкий прогрес." />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="/logo.svg" />
+        <meta property="og:image" content="/og.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href="https://treneriwan.vercel.app" />
+        {/* Preconnect для швидкості */}
+        <link rel="preconnect" href="https://formsubmit.co" />
+        <link rel="preconnect" href="https://api.exchangerate.host" />
+        <link rel="preconnect" href="https://ipapi.co" />
       </Head>
 
       {/* TOAST */}
       {showToast && (
-        <div style={{
-          position: "fixed", top: 16, left: "50%", transform: "translateX(-50%)",
-          background: "#0e141c", border: "1px solid #263445", padding: "10px 14px",
-          borderRadius: 12, zIndex: 50
-        }}>
+        <div style={{ position: "fixed", top: 16, left: "50%", transform: "translateX(-50%)", background: "#0e141c", border: "1px solid #263445", padding: "10px 14px", borderRadius: 12, zIndex: 60 }}>
           {t.toastSent}
         </div>
       )}
@@ -340,6 +324,9 @@ export default function Home() {
           <div><a href={wa} target="_blank" rel="noreferrer" style={btnPrimary}>{t.ctaBook}</a></div>
         </div>
       </header>
+
+      {/* TAPE STRIP */}
+      <div style={tapeStrip} />
 
       {/* STRENGTHS */}
       <section style={section}>
@@ -404,16 +391,13 @@ export default function Home() {
           <form
             action="https://formsubmit.co/Dobr.ivn1995@gmail.com"
             method="POST"
-            style={{
-              maxWidth: 460, margin: "0 auto", padding: 18, border: "2px solid #263445",
-              borderRadius: 16, background: "#0e141c", display: "flex", flexDirection: "column", gap: 12, textAlign: "left",
-            }}
+            style={{ maxWidth: 460, margin: "0 auto", padding: 18, border: "2px solid #263445", borderRadius: 16, background: "#0e141c", display: "flex", flexDirection: "column", gap: 12, textAlign: "left" }}
+            onSubmit={() => { if (typeof window !== "undefined" && window.gtag) gtag('event','form_submit'); }}
           >
             <input type="hidden" name="_subject" value="Нова заявка з сайту treneriwan.vercel.app" />
             <input type="hidden" name="_captcha" value="false" />
-            {/* авто-відповідь юзеру */}
-            <input type="hidden" name="_autoresponse" value="Дякую за заявку! Я — Іван. Відповім особисто найближчим часом. Якщо терміново — напишіть у WhatsApp: +48 796 559 143" />
-            {/* редірект з позначкою для toast */}
+            <input type="text" name="_honey" style={{ display: "none" }} />
+            <input type="hidden" name="_autoresponse" value="Дякую за заявку! Я — Іван. Відповім особисто. Якщо терміново — WhatsApp: +48 796 559 143" />
             <input type="hidden" name="_next" value="https://treneriwan.vercel.app/?sent=1#apply" />
 
             <label>{t.formName}</label>
@@ -440,9 +424,7 @@ export default function Home() {
 
       {/* LOCATIONS */}
       <section style={section}>
-        <div style={max}>
-          <h3 style={title}>{t.locTitle}</h3>
-        </div>
+        <div style={max}><h3 style={title}>{t.locTitle}</h3></div>
         <div style={{ ...max, display: "grid", gap: 16 }}>
           <div style={card}>
             <div style={{ fontWeight: 700 }}>{t.loc1}</div>
@@ -474,31 +456,28 @@ export default function Home() {
       <footer style={{ borderTop: "1px solid #151e29", textAlign: "center", padding: "36px 0 80px" }}>
         <div style={{ fontWeight: 900, fontSize: 20, color: "#fff", marginBottom: 16 }}>{t.footerTitle}</div>
         <div>
-          <a href={tg} target="_blank" rel="noreferrer" style={btn}>{Icon.Telegram}<span>Telegram</span></a>
-          <a href={wa} target="_blank" rel="noreferrer" style={btn}>{Icon.WhatsApp}<span>WhatsApp</span></a>
-          <a href={ig} target="_blank" rel="noreferrer" style={btn}>{Icon.Instagram}<span>Instagram</span></a>
-          <a href={mail} style={btn}>{Icon.Email}<span>Email</span></a>
+          <a href={tg} target="_blank" rel="noreferrer" style={btn} onClick={()=>{ if (typeof window!=="undefined"&&window.gtag) gtag('event','click_telegram'); }}>{Icon.Telegram}<span>Telegram</span></a>
+          <a href={wa} target="_blank" rel="noreferrer" style={btn} onClick={()=>{ if (typeof window!=="undefined"&&window.gtag) gtag('event','click_whatsapp'); }}>{Icon.WhatsApp}<span>WhatsApp</span></a>
+          <a href={ig} target="_blank" rel="noreferrer" style={btn} onClick={()=>{ if (typeof window!=="undefined"&&window.gtag) gtag('event','click_instagram'); }}>{Icon.Instagram}<span>Instagram</span></a>
+          <a href={mail} style={btn} onClick={()=>{ if (typeof window!=="undefined"&&window.gtag) gtag('event','click_email'); }}>{Icon.Email}<span>Email</span></a>
         </div>
         <div style={{ fontSize: 13, opacity: 0.6, marginTop: 20 }}>{t.footerBrand}</div>
       </footer>
 
-      {/* STICKY CTA (mobile-first) */}
-      <div style={{
-        position: "fixed", bottom: 12, left: "50%", transform: "translateX(-50%)",
-        zIndex: 60, padding: 0
-      }}>
-        <a href="#apply" style={{ ...btnPrimary, borderRadius: 999, padding: "12px 20px" }}>
-          {t.ctaBook}
-        </a>
+      {/* STICKY CTA (мобільний) */}
+      <div style={{ position: "fixed", bottom: 12, left: "50%", transform: "translateX(-50%)", zIndex: 60 }}>
+        <a href="#apply" style={{ ...btnPrimary, borderRadius: 999, padding: "12px 20px" }}>{t.ctaBook}</a>
       </div>
 
+      {/* дрібні ефекти */}
       <style jsx global>{`
+        a, button { will-change: transform; }
         a:hover, button:hover { transform: translateY(-2px); }
         @media (min-width: 820px) {
-          /* приховати sticky CTA на великих екранах */
+          /* ховаємо sticky CTA на десктопі */
           div[style*="position: fixed"][style*="bottom: 12px"] { display: none; }
         }
       `}</style>
     </div>
   );
-      }
+}
