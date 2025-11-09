@@ -2,13 +2,11 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  // Links
   const wa = "https://wa.me/48796559143?text=" + encodeURIComponent("Привіт! Хочу тренування");
   const tg = "https://t.me/Grutos";
   const ig = "https://instagram.com/trener_iwan";
   const mail = "mailto:Dobr.ivn1995@gmail.com";
 
-  // i18n
   const dict = {
     ua: {
       badge: "м. Кельце • Персональний тренер",
@@ -39,14 +37,13 @@ export default function Home() {
       formOption1: "Тренування в Кельце",
       formOption2: "Онлайн-ведення",
       formMsg: "Коментар (необов’язково)",
-      formSend: "Надіслати заявку 💪",
+      formSend: "Надіслати заявку",
       locTitle: "Де тренуємось (Кельце)",
       loc1: "RMG — Sandomierska 112, Kielce",
       loc2: "Endorfina — Zagnańska 92, Kielce",
       maps: "Google Maps",
       footerTitle: "Написати мені",
-      footerBrand:
-        "© " + new Date().getFullYear() + " Trener Iwan — Discipline. Power. Balance.",
+      footerBrand: "© " + new Date().getFullYear() + " Trener Iwan — Discipline. Power. Balance.",
       lang: "🇺🇦",
       langAlt: "🇵🇱",
     },
@@ -79,14 +76,13 @@ export default function Home() {
       formOption1: "Trening w Kielcach",
       formOption2: "Prowadzenie online",
       formMsg: "Komentarz (opcjonalnie)",
-      formSend: "Wyślij zgłoszenie 💪",
+      formSend: "Wyślij zgłoszenie",
       locTitle: "Gdzie trenujemy (Kielce)",
       loc1: "RMG — Sandomierska 112, Kielce",
       loc2: "Endorfina — Zagnańska 92, Kielce",
       maps: "Google Maps",
       footerTitle: "Napisz do mnie",
-      footerBrand:
-        "© " + new Date().getFullYear() + " Trener Iwan — Discipline. Power. Balance.",
+      footerBrand: "© " + new Date().getFullYear() + " Trener Iwan — Discipline. Power. Balance.",
       lang: "🇵🇱",
       langAlt: "🇺🇦",
     },
@@ -107,44 +103,48 @@ export default function Home() {
   // Styles
   const wrap = { background: "#0b0f14", color: "#eef3f8" };
   const max = { maxWidth: 1160, margin: "0 auto", padding: "0 20px" };
+  const section = { padding: "44px 0", borderTop: "1px solid #151e29", textAlign: "center" };
   const hero = { padding: "56px 0 32px", textAlign: "center" };
-  const badge = {
-    display: "inline-block",
-    padding: "6px 12px",
-    borderRadius: 999,
-    border: "1px solid #263445",
-    color: "#a7c7e9",
-    fontSize: 12,
-    marginBottom: 12,
-  };
+  const badge = { display: "inline-block", padding: "6px 12px", borderRadius: 999, border: "1px solid #263445", color: "#a7c7e9", fontSize: 12, marginBottom: 12 };
   const h1 = { fontSize: 50, fontWeight: 900, margin: "12px 0 6px", color: "#ffffff" };
   const h2 = { fontSize: 32, fontWeight: 800, margin: "0 0 18px", color: "#27a6ff" };
   const lead = { opacity: 0.92, fontSize: 18, lineHeight: 1.6, marginBottom: 22 };
 
-  const btn = {
-    padding: "14px 24px",
-    borderRadius: 14,
-    fontWeight: 700,
-    textDecoration: "none",
-    border: "2px solid #27a6ff",
-    color: "#cfe9ff",
-    display: "inline-block",
-    margin: "6px",
-    transition: "all 0.2s ease",
-  };
+  const btn = { padding: "14px 24px", borderRadius: 14, fontWeight: 700, textDecoration: "none", border: "2px solid #27a6ff", color: "#cfe9ff", display: "inline-flex", alignItems: "center", gap: 10, margin: "6px", transition: "all 0.2s ease" };
   const btnPrimary = { ...btn, background: "#ff8a00", borderColor: "#ff8a00", color: "#0b0f14" };
-
-  const section = { padding: "44px 0", borderTop: "1px solid #151e29", textAlign: "center" };
   const title = { fontSize: 28, fontWeight: 900, marginBottom: 14 };
   const note = { color: "#9bb7d4", marginBottom: 18 };
-  const highlight = {
-    border: "2px solid #ff8a00",
-    borderRadius: 14,
-    padding: 16,
-    marginTop: 10,
-    display: "inline-block",
-  };
+  const highlight = { border: "2px solid #ff8a00", borderRadius: 14, padding: 16, marginTop: 10, display: "inline-block" };
   const strike = { textDecoration: "line-through", opacity: 0.6, marginRight: 8 };
+
+  // SVG icons
+  const Icon = {
+    Telegram: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M21.5 3.5L2.6 10.6c-.8.3-.8 1.4 0 1.7l4.6 1.6 1.7 5c.2.8 1.2.9 1.7.3l2.9-3.1 4.8 3.6c.6.5 1.5.1 1.7-.7l3-17c.2-.9-.7-1.6-1.5-1.4Z" stroke="#cfe9ff" strokeWidth="1.5" />
+      </svg>
+    ),
+    WhatsApp: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M20.5 12a8.5 8.5 0 1 1-3.1-6.6l.2.2" stroke="#cfe9ff" strokeWidth="1.5"/>
+        <path d="M7.2 19.6 5 21l.5-2.6" stroke="#cfe9ff" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M16.8 14.6c-.3.9-1.7 1.1-2.4.9-1.2-.4-2.7-1.4-3.8-2.6s-2.2-2.6-2.6-3.8c-.2-.7 0-2.1.9-2.4.4-.1.8 0 1.1.3l1.1 1.1c.3.3.4.7.3 1.1-.1.4-.3.7-.6 1l.6.9c.5.7 1.2 1.4 1.9 1.9l.9.6c.3-.3.6-.5 1-.6.4-.1.8 0 1.1.3l1.1 1.1c.3.3.4.8.3 1.1Z" fill="none" stroke="#cfe9ff" strokeWidth="1.5" strokeLinecap="round"/>
+      </svg>
+    ),
+    Instagram: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <rect x="3.5" y="3.5" width="17" height="17" rx="4" stroke="#cfe9ff" strokeWidth="1.5"/>
+        <circle cx="12" cy="12" r="3.5" stroke="#cfe9ff" strokeWidth="1.5"/>
+        <circle cx="17.2" cy="6.8" r="1.2" fill="#cfe9ff"/>
+      </svg>
+    ),
+    Email: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M3.5 7.5h17v9h-17z" stroke="#cfe9ff" strokeWidth="1.5"/>
+        <path d="M4 8l8 5 8-5" stroke="#cfe9ff" strokeWidth="1.5" fill="none"/>
+      </svg>
+    ),
+  };
 
   return (
     <div style={wrap}>
@@ -159,10 +159,7 @@ export default function Home() {
           <span style={{ color: "#fff" }}>TRENER</span>{" "}
           <span style={{ color: "#ff8a00" }}>IWAN</span>
         </div>
-        <button
-          onClick={switchLang}
-          style={{ ...btn, borderRadius: 999, padding: "8px 14px", fontSize: 16, border: "1px solid #27a6ff", background: "transparent" }}
-        >
+        <button onClick={switchLang} style={{ ...btn, borderRadius: 999, padding: "8px 14px", fontSize: 16, border: "1px solid #27a6ff", background: "transparent" }}>
           {t.lang} ↔ {t.langAlt}
         </button>
       </div>
@@ -193,13 +190,10 @@ export default function Home() {
         <div style={max}>
           <h3 style={title}>{t.priceTitle}</h3>
           <div style={note}>{t.priceNote}</div>
-          <p><b>{t.p1}</b> —  {t.p1price}</p>
-          <p><b>{t.p2}</b> —  {t.p2price}</p>
+          <p><b>{t.p1}</b> — {t.p1price}</p>
+          <p><b>{t.p2}</b> — {t.p2price}</p>
           <div style={highlight}>
-            <p>
-              <b>{t.p3}</b><br />
-              <span style={strike}>{t.p3priceOld}</span>{t.p3priceNew}
-            </p>
+            <p><b>{t.p3}</b><br /><span style={strike}>{t.p3priceOld}</span>{t.p3priceNew}</p>
           </div>
           <div style={{ marginTop: 20 }}>
             <a href={wa} target="_blank" rel="noreferrer" style={btnPrimary}>{t.buyBlock}</a>
@@ -215,7 +209,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FORM (inside page, framed look) */}
+      {/* FORM */}
       <section id="apply" style={section}>
         <div style={max}>
           <h3 style={title}>{t.formTitle}</h3>
@@ -235,31 +229,28 @@ export default function Home() {
               textAlign: "left",
             }}
           >
-            {/* FormSubmit options */}
             <input type="hidden" name="_subject" value="Нова заявка з сайту treneriwan.vercel.app" />
             <input type="hidden" name="_captcha" value="false" />
             {/* <input type="hidden" name="_next" value="https://treneriwan.vercel.app/?sent=1#apply" /> */}
 
             <label>{t.formName}</label>
-            <input name="name" required
-              style={{ padding: 12, borderRadius: 10, border: "1px solid #263445", background: "#0b121a", color: "#eef3f8" }} />
+            <input name="name" required style={{ padding: 12, borderRadius: 10, border: "1px solid #263445", background: "#0b121a", color: "#eef3f8" }} />
 
             <label>{t.formContact}</label>
-            <input name="contact" required
-              style={{ padding: 12, borderRadius: 10, border: "1px solid #263445", background: "#0b121a", color: "#eef3f8" }} />
+            <input name="contact" required style={{ padding: 12, borderRadius: 10, border: "1px solid #263445", background: "#0b121a", color: "#eef3f8" }} />
 
             <label>{t.formType}</label>
-            <select name="type"
-              style={{ padding: 12, borderRadius: 10, border: "1px solid #263445", background: "#0b121a", color: "#eef3f8" }}>
+            <select name="type" style={{ padding: 12, borderRadius: 10, border: "1px solid #263445", background: "#0b121a", color: "#eef3f8" }}>
               <option>{t.formOption1}</option>
               <option>{t.formOption2}</option>
             </select>
 
             <label>{t.formMsg}</label>
-            <textarea name="message" rows={3}
-              style={{ padding: 12, borderRadius: 10, border: "1px solid #263445", background: "#0b121a", color: "#eef3f8" }} />
+            <textarea name="message" rows={3} style={{ padding: 12, borderRadius: 10, border: "1px solid #263445", background: "#0b121a", color: "#eef3f8" }} />
 
-            <button type="submit" style={{ ...btnPrimary, textAlign: "center" }}>{t.formSend}</button>
+            <button type="submit" style={{ ...btnPrimary, textAlign: "center" }}>
+              {t.formSend}
+            </button>
           </form>
         </div>
       </section>
@@ -271,36 +262,39 @@ export default function Home() {
           <div style={{ display: "grid", gap: 16 }}>
             <div style={{ border: "2px solid #263445", borderRadius: 16, padding: 16 }}>
               <div style={{ fontWeight: 700 }}>{t.loc1}</div>
-              <a href="https://maps.google.com/?q=Sandomierska+112+Kielce" target="_blank" rel="noreferrer" style={{ ...btn, borderRadius: 12 }}>
-                {t.maps}
-              </a>
+              <a href="https://maps.google.com/?q=Sandomierska+112+Kielce" target="_blank" rel="noreferrer" style={{ ...btn, borderRadius: 12 }}>{t.maps}</a>
             </div>
             <div style={{ border: "2px solid #263445", borderRadius: 16, padding: 16 }}>
               <div style={{ fontWeight: 700 }}>{t.loc2}</div>
-              <a href="https://maps.google.com/?q=Zagna%C5%84ska+92+Kielce" target="_blank" rel="noreferrer" style={{ ...btn, borderRadius: 12 }}>
-                {t.maps}
-              </a>
+              <a href="https://maps.google.com/?q=Zagna%C5%84ska+92+Kielce" target="_blank" rel="noreferrer" style={{ ...btn, borderRadius: 12 }}>{t.maps}</a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FOOTER with framed, clickable links */}
+      {/* FOOTER with official-like icons */}
       <footer style={{ borderTop: "1px solid #151e29", textAlign: "center", padding: "36px 0 60px" }}>
         <div style={{ fontWeight: 900, fontSize: 20, color: "#fff", marginBottom: 16 }}>{t.footerTitle}</div>
         <div>
-          <a href={tg} target="_blank" rel="noreferrer" style={btn}>⚡ Telegram</a>
-          <a href={wa} target="_blank" rel="noreferrer" style={btn}>💬 WhatsApp</a>
-          <a href={ig} target="_blank" rel="noreferrer" style={btn}>📷 Instagram</a>
-          <a href={mail} style={btn}>✉️ Email</a>
+          <a href={tg} target="_blank" rel="noreferrer" style={btn}>
+            {Icon.Telegram}<span>Telegram</span>
+          </a>
+          <a href={wa} target="_blank" rel="noreferrer" style={btn}>
+            {Icon.WhatsApp}<span>WhatsApp</span>
+          </a>
+          <a href={ig} target="_blank" rel="noreferrer" style={btn}>
+            {Icon.Instagram}<span>Instagram</span>
+          </a>
+          <a href={mail} style={btn}>
+            {Icon.Email}<span>Email</span>
+          </a>
         </div>
         <div style={{ fontSize: 13, opacity: 0.6, marginTop: 20 }}>{t.footerBrand}</div>
       </footer>
 
-      {/* Small global hover */}
       <style jsx global>{`
         a:hover, button:hover { transform: translateY(-2px); }
       `}</style>
     </div>
   );
-            }
+}
