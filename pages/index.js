@@ -1,15 +1,15 @@
 import Head from "next/head";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 export default function Home() {
-  // ===== CONTACT LINKS (UTM готові) =====
+  // ===== CONTACT LINKS =====
   const utm = "&utm_source=site&utm_medium=cta&utm_campaign=landing";
   const wa = "https://wa.me/48796559143?text=" + encodeURIComponent("Привіт! Хочу тренування") + utm;
   const tg = "https://t.me/Grutos";
   const ig = "https://instagram.com/trener_iwan";
   const mail = "mailto:Dobr.ivn1995@gmail.com";
 
-  // ===== i18n словники =====
+  // ===== i18n =====
   const dict = {
     ua: {
       badge: "м. Кельце • Персональний тренер",
@@ -28,12 +28,11 @@ export default function Home() {
       aboutText:
         "Я Іван — тренер із 9-річним досвідом. Працюю з початківцями, з відновленням після травм та онлайн. Принцип — чиста техніка, результат і повага до тіла.",
 
-      // NEW: Clients block
       clientsTitle: "Кому я допомагаю",
       clientsText1:
         "До мене приходять програмісти, менеджери, викладачі — люди, які більшість дня сидять за комп’ютером. Разом ми відновлюємо поставу, укріплюємо спину й вчимо тіло працювати правильно.",
       clientsText2:
-        "Без фанатизму. Без болю. Без показухи. Я допомагаю зробити тіло стабільним, щоб голова не боліла від болю. Для когось це повернення до руху, для когось — спосіб тримати себе в тонусі після 10 годин за ноутом.",
+        "Без фанатизму. Без болю. Без показухи. Я допомагаю зробити тіло стабільним. Для когось це повернення до руху, для когось — спосіб тримати тонус після 10 годин за ноутом.",
 
       priceTitle: "Ціни (конвертуються за регіоном)",
       priceNote: "База — PLN. Показуємо у вашій валюті автоматично.",
@@ -90,12 +89,11 @@ export default function Home() {
       aboutText:
         "Jestem Iwan — trener z 9-letnim doświadczeniem. Pomagam poprawić technikę, zrzucić wagę i wrócić do formy bez kontuzji.",
 
-      // NEW: Clients block
       clientsTitle: "Komu pomagam",
       clientsText1:
-        "Przychodzą do mnie programiści, menedżerowie, nauczyciele – ludzie, którzy większość dnia spędzają przy komputerze. Wspólnie odbudowujemy postawę, wzmacniamy plecy i uczymy ciało pracować poprawnie.",
+        "Przychodzą do mnie programiści, menedżerowie, nauczyciele – osoby pracujące wiele godzin przy komputerze. Odbudowujemy postawę i wzmacniamy plecy.",
       clientsText2:
-        "Bez fanatyzmu. Bez bólu. Bez pokazówki. Pomagam zrobić ciało stabilnym, żeby głowa nie bolała od napięcia. Dla jednych to powrót do ruchu, dla innych – sposób na utrzymanie formy po 10 godzinach przed monitorem.",
+        "Bez fanatyzmu. Bez bólu. Pomagam zrobić ciało stabilnym i utrzymać formę po 10h przed monitorem.",
 
       priceTitle: "Cennik (przeliczany wg regionu)",
       priceNote: "Bazą jest PLN. Pokazujemy automatycznie w Twojej walucie.",
@@ -126,7 +124,7 @@ export default function Home() {
       reviews: [
         { name: "Natalia", text: "–8 kg w 2 miesiące. Technika bez bólu, komfort." },
         { name: "Olek", text: "Po kontuzji pleców wróciłem do przysiadów. Bezpiecznie." },
-        { name: "Maria", text: "Prowadzenie online: plan + wsparcie. Efekty co tydzień." },
+        { name: "Maria", text: "Online: plan + wsparcie. Efekty co tydzień." },
       ],
 
       footerTitle: "Napisz do mnie",
@@ -137,7 +135,7 @@ export default function Home() {
     },
   };
 
-  // ===== Netflix-style мова =====
+  // ===== Language (Netflix-style) =====
   const [lang, setLang] = useState("ua");
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -155,7 +153,7 @@ export default function Home() {
     if (typeof window !== "undefined") localStorage.setItem("lang", next);
   };
 
-  // ===== Валюта за регіоном (PLN база) =====
+  // ===== Currency by region (PLN base) =====
   const [currency, setCurrency] = useState("PLN");
   const [rate, setRate] = useState({ PLN: 1, EUR: 0.23, USD: 0.25, UAH: 5.9 });
   const symbol = { PLN: "zł", EUR: "€", UAH: "₴", USD: "$" };
@@ -203,7 +201,6 @@ export default function Home() {
 
   const fmt = (pln) => `${Math.round(pln * (rate[currency] || 1))} ${symbol[currency] || "zł"}`;
 
-  // Базові ціни в PLN
   const P = useMemo(() => ({
     single: 90,
     pack5: 80,
@@ -211,7 +208,7 @@ export default function Home() {
     onlineMonth: 500,
   }), []);
 
-  // ===== Toast після ?sent=1 =====
+  // ===== Toast on ?sent=1 =====
   const [showToast, setShowToast] = useState(false);
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -224,7 +221,7 @@ export default function Home() {
     }
   }, []);
 
-  // ====== СТИЛІ ======
+  // ===== styles =====
   const pageBg = {
     backgroundColor: "#0b0f14",
     color: "#eef3f8",
@@ -250,7 +247,6 @@ export default function Home() {
 
   const max = { maxWidth: 1160, margin: "0 auto", padding: "0 20px" };
   const section = { padding: "44px 0", borderTop: "1px solid #151e29", textAlign: "center" };
-
   const hero = { padding: "56px 0 32px", textAlign: "center" };
 
   const badge = { display: "inline-block", padding: "6px 12px", borderRadius: 999, border: "1px solid #263445", color: "#a7c7e9", fontSize: 12, marginBottom: 12 };
@@ -258,17 +254,7 @@ export default function Home() {
   const h2 = { fontSize: 32, fontWeight: 800, margin: "0 0 18px", color: "#27a6ff" };
   const lead = { opacity: 0.92, fontSize: 18, lineHeight: 1.6, marginBottom: 22 };
 
-  // Мірна стрічка під геро
-  const tapeStrip = {
-    height: 22,
-    margin: "8px 0 0",
-    backgroundImage: "repeating-linear-gradient(90deg, #ffbf47 0 20px, #ffbf47 0 20px, #0b0f14 20px 22px)",
-    borderTop: "1px solid #cc922f",
-    borderBottom: "1px solid #cc922f",
-    boxShadow: "0 1px 0 rgba(0,0,0,.3) inset, 0 -1px 0 rgba(0,0,0,.2) inset",
-  };
-
-  // ====== КНОПКИ (менші, щільніші, ідеальне центрування тексту) ======
+  // buttons
   const btn = {
     padding: "10px 16px",
     borderRadius: 12,
@@ -301,20 +287,35 @@ export default function Home() {
     Email: (<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3.5 7.5h17v9h-17z" stroke="#cfe9ff" strokeWidth="1.5"/><path d="M4 8l8 5 8-5" stroke="#cfe9ff" strokeWidth="1.5" fill="none"/></svg>)
   };
 
+  // ===== Sticky CTA (показуємо тільки якщо hero-кнопка зникла) =====
+  const heroCtaRef = useRef(null);
+  const [showSticky, setShowSticky] = useState(false);
+  useEffect(() => {
+    if (!heroCtaRef.current) return;
+    const el = heroCtaRef.current;
+    const io = new IntersectionObserver(
+      (entries) => {
+        const isVisible = entries[0].isIntersecting;
+        setShowSticky(!isVisible);
+      },
+      { root: null, threshold: 0.1 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <div style={pageBg}>
       <Head>
         <title>{t.h1} — Trener Iwan | Kielce</title>
         <meta name="description" content="Персональні тренування в Кельце і онлайн. Автомова та валюта за регіоном. 9 років досвіду." />
         <link rel="icon" href="/favicon.ico" />
-        {/* Open Graph / Twitter */}
         <meta property="og:title" content="Trener Iwan — Kielce & Online" />
         <meta property="og:description" content="Чітка техніка. Керований дискомфорт. Швидкий прогрес." />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/og.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="canonical" href="https://treneriwan.vercel.app" />
-        {/* Preconnect для швидкості */}
         <link rel="preconnect" href="https://formsubmit.co" />
         <link rel="preconnect" href="https://api.exchangerate.host" />
         <link rel="preconnect" href="https://ipapi.co" />
@@ -345,12 +346,15 @@ export default function Home() {
           <h1 style={h1}>{t.h1}</h1>
           <h2 style={h2}>{t.h2}</h2>
           <p style={lead} dangerouslySetInnerHTML={{ __html: t.heroLead }} />
-          <div><a href={wa} target="_blank" rel="noreferrer" style={btnPrimary}>{t.ctaBook}</a></div>
+          <div>
+            <a ref={heroCtaRef} href="#apply" style={btnPrimary}>
+              {t.ctaBook}
+            </a>
+          </div>
         </div>
       </header>
 
-      {/* TAPE STRIP */}
-      <div style={tapeStrip} />
+      {/* (прибрано жовтий розділювач) */}
 
       {/* STRENGTHS */}
       <section style={section}>
@@ -378,7 +382,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CLIENT TYPES (NEW) */}
+      {/* CLIENT TYPES */}
       <section style={section}>
         <div style={max}>
           <h3 style={title}>{t.clientsTitle}</h3>
@@ -450,7 +454,7 @@ export default function Home() {
             <label>{t.formMsg}</label>
             <textarea name="message" rows={3} style={{ padding: 12, borderRadius: 10, border: "1px solid #263445", background: "#0b121a", color: "#eef3f8" }} />
 
-            {/* ФІКС центрування тексту в кнопці */}
+            {/* Центр тексту в кнопці */}
             <button
               type="submit"
               style={{
@@ -459,7 +463,10 @@ export default function Home() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                height: 48, // ідеальний вертикальний центр
+                height: 48,
+                padding: "0 18px",
+                lineHeight: 1,
+                width: "100%",
               }}
             >
               {t.formSend}
@@ -474,4 +481,65 @@ export default function Home() {
         <div style={{ ...max, display: "grid", gap: 16 }}>
           <div style={card}>
             <div style={{ fontWeight: 700 }}>{t.loc1}</div>
-            <a href="https://maps.google.com/?q=Sandomierska+112+Kielce" target="_blank" rel="noreferrer" style
+            <a href="https://maps.google.com/?q=Sandomierska+112+Kielce" target="_blank" rel="noreferrer" style={{ ...btn, borderRadius: 12 }}>{t.maps}</a>
+          </div>
+          <div style={card}>
+            <div style={{ fontWeight: 700 }}>{t.loc2}</div>
+            <a href="https://maps.google.com/?q=Zagna%C5%84ska+92+Kielce" target="_blank" rel="noreferrer" style={{ ...btn, borderRadius: 12 }}>{t.maps}</a>
+          </div>
+        </div>
+      </section>
+
+      {/* REVIEWS */}
+      <section style={section}>
+        <div style={max}>
+          <h3 style={title}>{t.reviewsTitle}</h3>
+          <div style={{ display: "grid", gap: 14 }}>
+            {t.reviews.map((r, i) => (
+              <div key={i} style={{ ...card, textAlign: "left" }}>
+                <div style={{ fontWeight: 700, marginBottom: 6 }}>{r.name}</div>
+                <div style={{ opacity: 0.9 }}>{r.text}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer style={{ borderTop: "1px solid #151e29", textAlign: "center", padding: "36px 0 80px" }}>
+        <div style={{ fontWeight: 900, fontSize: 20, color: "#fff", marginBottom: 16 }}>{t.footerTitle}</div>
+        <div>
+          <a href={tg} target="_blank" rel="noreferrer" style={btn}>{Icon.Telegram}<span>Telegram</span></a>
+          <a href={wa} target="_blank" rel="noreferrer" style={btn}>{Icon.WhatsApp}<span>WhatsApp</span></a>
+          <a href={ig} target="_blank" rel="noreferrer" style={btn}>{Icon.Instagram}<span>Instagram</span></a>
+          <a href={mail} style={btn}>{Icon.Email}<span>Email</span></a>
+        </div>
+        <div style={{ fontSize: 13, opacity: 0.6, marginTop: 20 }}>{t.footerBrand}</div>
+      </footer>
+
+      {/* STICKY CTA — тільки коли hero-кнопка зникла */}
+      {showSticky && (
+        <div style={{ position: "fixed", bottom: 12, left: "50%", transform: "translateX(-50%)", zIndex: 60 }}>
+          <a href="#apply" style={{ ...btnPrimary, borderRadius: 999, padding: "10px 16px" }}>
+            {t.ctaBook}
+          </a>
+        </div>
+      )}
+
+      {/* Глобальні правки: повністю чорний фон, без «білих рамок» */}
+      <style jsx global>{`
+        html, body, #__next { height: 100%; background: #0b0f14; }
+        body { margin: 0; }
+        a, button { will-change: transform; }
+        a:hover, button:hover { transform: translateY(-2px); }
+        @media (max-width: 420px) {
+          a[style], button[style] {
+            padding: 9px 14px !important;
+            font-size: 14px !important;
+            border-radius: 10px !important;
+          }
+        }
+      `}</style>
+    </div>
+  );
+      }
