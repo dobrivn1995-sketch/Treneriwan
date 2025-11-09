@@ -1,35 +1,31 @@
 import Head from "next/head";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export default function Home() {
-  // LINKS
+  // CONTACT LINKS
   const wa = "https://wa.me/48796559143?text=" + encodeURIComponent("Привіт! Хочу тренування");
   const tg = "https://t.me/Grutos";
   const ig = "https://instagram.com/trener_iwan";
   const mail = "mailto:Dobr.ivn1995@gmail.com";
 
-  // i18n dictionary
+  // i18n
   const dict = {
     ua: {
       badge: "м. Кельце • Персональний тренер",
       h1: "Тренуйся з Іваном",
       h2: "LEVEL UP YOUR BODY",
       heroLead:
-        "9 років досвіду. Персональні тренування в Кельце та онлайн-ведення з нуля. Техніка без болю + стабільний прогрес.",
+        "9 років досвіду. Персональні тренування в Кельце **і онлайн** з нуля. Техніка без болю + стабільний прогрес.",
       ctaBook: "Записатися",
 
-      strengthsTitle: "9 років досвіду. Кельце та онлайн.",
-      strengths: [
-        "Чітка техніка",
-        "Керований дискомфорт",
-        "Швидкий прогрес",
-      ],
+      strengthsTitle: "9 років досвіду. Кельце і онлайн.",
+      strengths: ["Чітка техніка", "Керований дискомфорт", "Швидкий прогрес"],
       strengthsNote:
         "Треную початківців і допомагаю відновитись після травм. Мій підхід — точність, безпека й стабільний результат. Легка крепатура — це норм: тіло адаптується і росте 💪",
 
       aboutTitle: "Про мене",
       aboutText:
-        "Я Іван — тренер із 9-річним досвідом. Працюю з початківцями, з відновленням після травм і онлайн. Принцип — чиста техніка, результат і повага до тіла.",
+        "Я Іван — тренер із 9-річним досвідом. Працюю з початківцями, з відновленням після травм та онлайн. Принцип — чиста техніка, результат і повага до тіла.",
 
       priceTitle: "Ціни (конвертуються за регіоном)",
       priceNote: "База — PLN. Показуємо у вашій валюті автоматично.",
@@ -56,27 +52,43 @@ export default function Home() {
       loc2: "Endorfina — Zagnańska 92, Kielce",
       maps: "Google Maps",
 
+      reviewsTitle: "Клієнти про роботу",
+      reviews: [
+        {
+          name: "Наталія",
+          text: "–8 кг за 2 місяці. Головне — техніка без болю. Дуже комфортно.",
+        },
+        {
+          name: "Олег",
+          text: "Після травми спини повернувся до присідань. Все поступово і безпечно.",
+        },
+        {
+          name: "Марія",
+          text: "Онлайн-ведення: чіткий план + підтримка. Результат є щотижня.",
+        },
+      ],
+
       footerTitle: "Написати мені",
-      footerBrand: "© " + new Date().getFullYear() + " Trener Iwan — Discipline. Power. Balance.",
+      footerBrand:
+        "© " +
+        new Date().getFullYear() +
+        " Trener Iwan — Discipline. Power. Balance.",
       lang: "🇺🇦",
       langAlt: "🇵🇱",
+      toastSent: "Заявку надіслано ✅ Я відповім особисто.",
     },
     pl: {
       badge: "Kielce • Trener personalny",
       h1: "Trenuj z Iwanem",
       h2: "LEVEL UP YOUR BODY",
       heroLead:
-        "9 lat doświadczenia. Treningi personalne w Kielcach i prowadzenie online. Technika bez bólu + systemowy progres.",
+        "9 lat doświadczenia. Treningi personalne w Kielcach **i online**. Technika bez bólu + systemowy progres.",
       ctaBook: "Zapisz się",
 
       strengthsTitle: "9 lat doświadczenia. Kielce i online.",
-      strengths: [
-        "Czysta technika",
-        "Kontrolowany dyskomfort",
-        "Szybki progres",
-      ],
+      strengths: ["Czysta technika", "Kontrolowany dyskomfort", "Szybki progres"],
       strengthsNote:
-        "Pracuję z początkującymi i po kontuzjach. Stawiam na dokładność, bezpieczeństwo i stabilne efekty. Delikatne DOMS-y są OK — to znak adaptacji 💪",
+        "Pracuję z początkującymi i po kontuzjach. Stawiam na dokładność, bezpieczeństwo i stabilne efekty. Delikatne DOMS-y są OK — znak adaptacji 💪",
 
       aboutTitle: "O mnie",
       aboutText:
@@ -107,14 +119,34 @@ export default function Home() {
       loc2: "Endorfina — Zagnańska 92, Kielce",
       maps: "Google Maps",
 
+      reviewsTitle: "Opinie klientów",
+      reviews: [
+        {
+          name: "Natalia",
+          text: "–8 kg w 2 miesiące. Technika bez bólu, pełen komfort.",
+        },
+        {
+          name: "Olek",
+          text: "Po kontuzji pleców wróciłem do przysiadów. Bezpiecznie i stopniowo.",
+        },
+        {
+          name: "Maria",
+          text: "Prowadzenie online: konkretny plan + wsparcie. Efekty co tydzień.",
+        },
+      ],
+
       footerTitle: "Napisz do mnie",
-      footerBrand: "© " + new Date().getFullYear() + " Trener Iwan — Discipline. Power. Balance.",
+      footerBrand:
+        "© " +
+        new Date().getFullYear() +
+        " Trener Iwan — Discipline. Power. Balance.",
       lang: "🇵🇱",
       langAlt: "🇺🇦",
+      toastSent: "Zgłoszenie wysłane ✅ Odezwę się osobiście.",
     },
   };
 
-  // ---------- LANGUAGE DETECTION (Netflix-style) ----------
+  // ===== LANGUAGE (Netflix-style) =====
   const [lang, setLang] = useState("ua");
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -139,23 +171,20 @@ export default function Home() {
     if (typeof window !== "undefined") localStorage.setItem("lang", next);
   };
 
-  // ---------- CURRENCY BY REGION ----------
-  const [currency, setCurrency] = useState("PLN"); // PLN / EUR / UAH / USD
-  const [rate, setRate] = useState({ PLN: 1, EUR: 0.0, UAH: 0.0, USD: 0.0 }); // how many X for 1 PLN
-  // map to symbols
+  // ===== CURRENCY BY REGION =====
+  const [currency, setCurrency] = useState("PLN");
+  const [rate, setRate] = useState({ PLN: 1, EUR: 0.0, UAH: 0.0, USD: 0.0 });
   const symbol = { PLN: "zł", EUR: "€", UAH: "₴", USD: "$" };
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // 1) saved currency?
     const savedCur = localStorage.getItem("currency");
     if (savedCur && symbol[savedCur]) setCurrency(savedCur);
 
-    // 2) detect by IP country
     fetch("https://ipapi.co/json/")
-      .then(r => r.json())
-      .then(data => {
+      .then((r) => r.json())
+      .then((data) => {
         const cc = (data && data.country_code) || "";
         let cur = "EUR";
         if (cc === "PL") cur = "PLN";
@@ -165,7 +194,6 @@ export default function Home() {
         localStorage.setItem("currency", cur);
       })
       .catch(() => {
-        // fallback by navigator language
         const nav = navigator.language || "";
         if (nav.startsWith("pl")) setCurrency("PLN");
         else if (nav.startsWith("uk")) setCurrency("UAH");
@@ -174,12 +202,11 @@ export default function Home() {
       });
   }, []);
 
-  // 3) fetch FX rates (PLN base)
   useEffect(() => {
     fetch("https://api.exchangerate.host/latest?base=PLN&symbols=EUR,USD,UAH")
-      .then(r => r.json())
-      .then(d => {
-        const rts = d && d.rates ? d.rates : {};
+      .then((r) => r.json())
+      .then((d) => {
+        const rts = d?.rates || {};
         setRate({
           PLN: 1,
           EUR: rts.EUR || 0.23,
@@ -188,11 +215,10 @@ export default function Home() {
         });
       })
       .catch(() =>
-        setRate({ PLN: 1, EUR: 0.23, USD: 0.25, UAH: 5.9 }) // safe fallback
+        setRate({ PLN: 1, EUR: 0.23, USD: 0.25, UAH: 5.9 })
       );
   }, []);
 
-  // price helpers (base in PLN)
   const fmt = (pln) => {
     const value = Math.round(pln * (rate[currency] || 1));
     return `${value} ${symbol[currency] || "zł"}`;
@@ -201,15 +227,28 @@ export default function Home() {
   // BASE PRICES (PLN)
   const P = useMemo(
     () => ({
-      single: 90,     // single session
-      pack5: 80,      // per session (5x)
-      pack10Total: 700, // total
-      onlineMonth: 500 // per month
+      single: 90,
+      pack5: 80,
+      pack10Total: 700,
+      onlineMonth: 500,
     }),
     []
   );
 
-  // ----- styles -----
+  // ===== TOAST on success (?sent=1) =====
+  const [showToast, setShowToast] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const url = new URL(window.location.href);
+    if (url.searchParams.get("sent") === "1") {
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 2500);
+      url.searchParams.delete("sent");
+      window.history.replaceState({}, "", url.toString());
+    }
+  }, []);
+
+  // ===== STYLES =====
   const wrap = { background: "#0b0f14", color: "#eef3f8" };
   const max = { maxWidth: 1160, margin: "0 auto", padding: "0 20px" };
   const section = { padding: "44px 0", borderTop: "1px solid #151e29", textAlign: "center" };
@@ -227,20 +266,58 @@ export default function Home() {
   const highlight = { border: "2px solid #ff8a00", borderRadius: 14, padding: 16, marginTop: 10, display: "inline-block" };
   const strike = { textDecoration: "line-through", opacity: 0.6, marginRight: 8 };
 
-  // SVG icons for footer
+  // SVG icons
   const Icon = {
-    Telegram: (<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21.5 3.5L2.6 10.6c-.8.3-.8 1.4 0 1.7l4.6 1.6 1.7 5c.2.8 1.2.9 1.7.3l2.9-3.1 4.8 3.6c.6.5 1.5.1 1.7-.7l3-17c.2-.9-.7-1.6-1.5-1.4Z" stroke="#cfe9ff" strokeWidth="1.5"/></svg>),
-    WhatsApp: (<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20.5 12a8.5 8.5 0 1 1-3.1-6.6" stroke="#cfe9ff" strokeWidth="1.5"/><path d="M7.2 19.6 5 21l.5-2.6" stroke="#cfe9ff" strokeWidth="1.5" strokeLinecap="round"/><path d="M16.8 14.6c-.3.9-1.7 1.1-2.4.9-1.2-.4-2.7-1.4-3.8-2.6s-2.2-2.6-2.6-3.8c-.2-.7 0-2.1.9-2.4.4-.1.8 0 1.1.3l1.1 1.1c.3.3.4.7.3 1.1-.1.4-.3.7-.6 1l.6.9c.5.7 1.2 1.4 1.9 1.9l.9.6c.3-.3.6-.5 1-.6.4-.1.8 0 1.1.3l1.1 1.1c.3.3.4.8.3 1.1Z" fill="none" stroke="#cfe9ff" strokeWidth="1.5" strokeLinecap="round"/></svg>),
-    Instagram: (<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="3.5" width="17" height="17" rx="4" stroke="#cfe9ff" strokeWidth="1.5"/><circle cx="12" cy="12" r="3.5" stroke="#cfe9ff" strokeWidth="1.5"/><circle cx="17.2" cy="6.8" r="1.2" fill="#cfe9ff"/></svg>),
-    Email: (<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3.5 7.5h17v9h-17z" stroke="#cfe9ff" strokeWidth="1.5"/><path d="M4 8l8 5 8-5" stroke="#cfe9ff" strokeWidth="1.5" fill="none"/></svg>)
+    Telegram: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M21.5 3.5L2.6 10.6c-.8.3-.8 1.4 0 1.7l4.6 1.6 1.7 5c.2.8 1.2.9 1.7.3l2.9-3.1 4.8 3.6c.6.5 1.5.1 1.7-.7l3-17c.2-.9-.7-1.6-1.5-1.4Z" stroke="#cfe9ff" strokeWidth="1.5" />
+      </svg>
+    ),
+    WhatsApp: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M20.5 12a8.5 8.5 0 1 1-3.1-6.6" stroke="#cfe9ff" strokeWidth="1.5" />
+        <path d="M7.2 19.6 5 21l.5-2.6" stroke="#cfe9ff" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M16.8 14.6c-.3.9-1.7 1.1-2.4.9-1.2-.4-2.7-1.4-3.8-2.6s-2.2-2.6-2.6-3.8c-.2-.7 0-2.1.9-2.4.4-.1.8 0 1.1.3l1.1 1.1c.3.3.4.7.3 1.1-.1.4-.3.7-.6 1l.6.9c.5.7 1.2 1.4 1.9 1.9l.9.6c.3-.3.6-.5 1-.6.4-.1.8 0 1.1.3l1.1 1.1c.3.3.4.8.3 1.1Z" fill="none" stroke="#cfe9ff" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    ),
+    Instagram: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <rect x="3.5" y="3.5" width="17" height="17" rx="4" stroke="#cfe9ff" strokeWidth="1.5" />
+        <circle cx="12" cy="12" r="3.5" stroke="#cfe9ff" strokeWidth="1.5" />
+        <circle cx="17.2" cy="6.8" r="1.2" fill="#cfe9ff" />
+      </svg>
+    ),
+    Email: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M3.5 7.5h17v9h-17z" stroke="#cfe9ff" strokeWidth="1.5" />
+        <path d="M4 8l8 5 8-5" stroke="#cfe9ff" strokeWidth="1.5" fill="none" />
+      </svg>
+    ),
   };
 
   return (
     <div style={wrap}>
       <Head>
         <title>{t.h1} — Trener Iwan | Kielce</title>
-        <meta name="description" content="Персональні тренування в Кельце та онлайн. Автовибір мови та валюти. 9 років досвіду." />
+        <meta name="description" content="Персональні тренування в Кельце і онлайн. Автомова та валюта за регіоном. 9 років досвіду." />
+        {/* Open Graph / Twitter */}
+        <meta property="og:title" content="Trener Iwan — Kielce & Online" />
+        <meta property="og:description" content="Чітка техніка. Керований дискомфорт. Швидкий прогрес." />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/logo.svg" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
+
+      {/* TOAST */}
+      {showToast && (
+        <div style={{
+          position: "fixed", top: 16, left: "50%", transform: "translateX(-50%)",
+          background: "#0e141c", border: "1px solid #263445", padding: "10px 14px",
+          borderRadius: 12, zIndex: 50
+        }}>
+          {t.toastSent}
+        </div>
+      )}
 
       {/* TOP BAR */}
       <div style={{ ...max, display: "flex", justifyContent: "space-between", alignItems: "center", height: 56 }}>
@@ -259,12 +336,12 @@ export default function Home() {
           <span style={badge}>{t.badge}</span>
           <h1 style={h1}>{t.h1}</h1>
           <h2 style={h2}>{t.h2}</h2>
-          <p style={lead}>{t.heroLead}</p>
+          <p style={lead} dangerouslySetInnerHTML={{ __html: t.heroLead }} />
           <div><a href={wa} target="_blank" rel="noreferrer" style={btnPrimary}>{t.ctaBook}</a></div>
         </div>
       </header>
 
-      {/* STRENGTHS BLOCK */}
+      {/* STRENGTHS */}
       <section style={section}>
         <div style={max}>
           <h3 style={title}>{t.strengthsTitle}</h3>
@@ -290,18 +367,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PRICING (auto-currency) */}
+      {/* PRICING */}
       <section style={section}>
         <div style={max}>
           <h3 style={title}>{t.priceTitle}</h3>
           <div style={note}>{t.priceNote}</div>
 
-          <p>
-            <b>{t.p1}</b> — {fmt(P.single)}
-          </p>
-          <p>
-            <b>{t.p2}</b> — {fmt(P.pack5)}
-          </p>
+          <p><b>{t.p1}</b> — {fmt(P.single)}</p>
+          <p><b>{t.p2}</b> — {fmt(P.pack5)}</p>
 
           <div style={highlight}>
             <p>
@@ -319,9 +392,7 @@ export default function Home() {
       {/* ONLINE */}
       <section style={section}>
         <div style={max}>
-          <h3 style={title}>
-            {t.onlineTitle} — {fmt(P.onlineMonth)}
-          </h3>
+          <h3 style={title}>{t.onlineTitle} — {fmt(P.onlineMonth)}</h3>
           <p style={note}>{t.onlineNote}</p>
         </div>
       </section>
@@ -340,17 +411,26 @@ export default function Home() {
           >
             <input type="hidden" name="_subject" value="Нова заявка з сайту treneriwan.vercel.app" />
             <input type="hidden" name="_captcha" value="false" />
+            {/* авто-відповідь юзеру */}
+            <input type="hidden" name="_autoresponse" value="Дякую за заявку! Я — Іван. Відповім особисто найближчим часом. Якщо терміново — напишіть у WhatsApp: +48 796 559 143" />
+            {/* редірект з позначкою для toast */}
+            <input type="hidden" name="_next" value="https://treneriwan.vercel.app/?sent=1#apply" />
+
             <label>{t.formName}</label>
             <input name="name" required style={{ padding: 12, borderRadius: 10, border: "1px solid #263445", background: "#0b121a", color: "#eef3f8" }} />
+
             <label>{t.formContact}</label>
             <input name="contact" required style={{ padding: 12, borderRadius: 10, border: "1px solid #263445", background: "#0b121a", color: "#eef3f8" }} />
+
             <label>{t.formType}</label>
             <select name="type" style={{ padding: 12, borderRadius: 10, border: "1px solid #263445", background: "#0b121a", color: "#eef3f8" }}>
               <option>{t.formOption1}</option>
               <option>{t.formOption2}</option>
             </select>
+
             <label>{t.formMsg}</label>
             <textarea name="message" rows={3} style={{ padding: 12, borderRadius: 10, border: "1px solid #263445", background: "#0b121a", color: "#eef3f8" }} />
+
             <button type="submit" style={{ ...btnPrimary, textAlign: "center" }}>
               {t.formSend}
             </button>
@@ -362,21 +442,36 @@ export default function Home() {
       <section style={section}>
         <div style={max}>
           <h3 style={title}>{t.locTitle}</h3>
-          <div style={{ display: "grid", gap: 16 }}>
-            <div style={card}>
-              <div style={{ fontWeight: 700 }}>{t.loc1}</div>
-              <a href="https://maps.google.com/?q=Sandomierska+112+Kielce" target="_blank" rel="noreferrer" style={{ ...btn, borderRadius: 12 }}>{t.maps}</a>
-            </div>
-            <div style={card}>
-              <div style={{ fontWeight: 700 }}>{t.loc2}</div>
-              <a href="https://maps.google.com/?q=Zagna%C5%84ska+92+Kielce" target="_blank" rel="noreferrer" style={{ ...btn, borderRadius: 12 }}>{t.maps}</a>
-            </div>
+        </div>
+        <div style={{ ...max, display: "grid", gap: 16 }}>
+          <div style={card}>
+            <div style={{ fontWeight: 700 }}>{t.loc1}</div>
+            <a href="https://maps.google.com/?q=Sandomierska+112+Kielce" target="_blank" rel="noreferrer" style={{ ...btn, borderRadius: 12 }}>{t.maps}</a>
+          </div>
+          <div style={card}>
+            <div style={{ fontWeight: 700 }}>{t.loc2}</div>
+            <a href="https://maps.google.com/?q=Zagna%C5%84ska+92+Kielce" target="_blank" rel="noreferrer" style={{ ...btn, borderRadius: 12 }}>{t.maps}</a>
+          </div>
+        </div>
+      </section>
+
+      {/* REVIEWS */}
+      <section style={section}>
+        <div style={max}>
+          <h3 style={title}>{t.reviewsTitle}</h3>
+          <div style={{ display: "grid", gap: 14 }}>
+            {t.reviews.map((r, i) => (
+              <div key={i} style={{ ...card, textAlign: "left" }}>
+                <div style={{ fontWeight: 700, marginBottom: 6 }}>{r.name}</div>
+                <div style={{ opacity: 0.9 }}>{r.text}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer style={{ borderTop: "1px solid #151e29", textAlign: "center", padding: "36px 0 60px" }}>
+      <footer style={{ borderTop: "1px solid #151e29", textAlign: "center", padding: "36px 0 80px" }}>
         <div style={{ fontWeight: 900, fontSize: 20, color: "#fff", marginBottom: 16 }}>{t.footerTitle}</div>
         <div>
           <a href={tg} target="_blank" rel="noreferrer" style={btn}>{Icon.Telegram}<span>Telegram</span></a>
@@ -387,9 +482,23 @@ export default function Home() {
         <div style={{ fontSize: 13, opacity: 0.6, marginTop: 20 }}>{t.footerBrand}</div>
       </footer>
 
+      {/* STICKY CTA (mobile-first) */}
+      <div style={{
+        position: "fixed", bottom: 12, left: "50%", transform: "translateX(-50%)",
+        zIndex: 60, padding: 0
+      }}>
+        <a href="#apply" style={{ ...btnPrimary, borderRadius: 999, padding: "12px 20px" }}>
+          {t.ctaBook}
+        </a>
+      </div>
+
       <style jsx global>{`
         a:hover, button:hover { transform: translateY(-2px); }
+        @media (min-width: 820px) {
+          /* приховати sticky CTA на великих екранах */
+          div[style*="position: fixed"][style*="bottom: 12px"] { display: none; }
+        }
       `}</style>
     </div>
   );
-    }
+      }
