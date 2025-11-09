@@ -251,13 +251,7 @@ export default function Home() {
   const max = { maxWidth: 1160, margin: "0 auto", padding: "0 20px" };
   const section = { padding: "44px 0", borderTop: "1px solid #151e29", textAlign: "center" };
 
-  const hero = {
-    padding: "56px 0 32px",
-    textAlign: "center",
-    // Якщо захочеш реальне фото залу — поклади /public/bg-gym.jpg і розкоментуй:
-    // backgroundImage: "linear-gradient(rgba(11,15,20,.85), rgba(11,15,20,.85)), url('/bg-gym.jpg')",
-    // backgroundSize: "cover", backgroundPosition: "center", backgroundAttachment: "fixed",
-  };
+  const hero = { padding: "56px 0 32px", textAlign: "center" };
 
   const badge = { display: "inline-block", padding: "6px 12px", borderRadius: 999, border: "1px solid #263445", color: "#a7c7e9", fontSize: 12, marginBottom: 12 };
   const h1 = { fontSize: 50, fontWeight: 900, margin: "12px 0 6px", color: "#ffffff" };
@@ -274,8 +268,26 @@ export default function Home() {
     boxShadow: "0 1px 0 rgba(0,0,0,.3) inset, 0 -1px 0 rgba(0,0,0,.2) inset",
   };
 
-  const btn = { padding: "14px 24px", borderRadius: 14, fontWeight: 700, textDecoration: "none", border: "2px solid #27a6ff", color: "#cfe9ff", display: "inline-flex", alignItems: "center", gap: 10, margin: "6px", transition: "all 0.2s ease" };
+  // ====== КНОПКИ (менші, щільніші, ідеальне центрування тексту) ======
+  const btn = {
+    padding: "10px 16px",
+    borderRadius: 12,
+    fontSize: 15,
+    lineHeight: 1.1,
+    fontWeight: 700,
+    textDecoration: "none",
+    border: "2px solid #27a6ff",
+    color: "#cfe9ff",
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    margin: "6px",
+    textAlign: "center",
+    transition: "transform .2s ease"
+  };
   const btnPrimary = { ...btn, background: "#ff8a00", borderColor: "#ff8a00", color: "#0b0f14" };
+
   const title = { fontSize: 28, fontWeight: 900, marginBottom: 14 };
   const note = { color: "#9bb7d4", marginBottom: 18 };
   const card = { border: "2px solid #263445", borderRadius: 16, padding: 16, backdropFilter: "saturate(120%) blur(0.5px)" };
@@ -321,7 +333,7 @@ export default function Home() {
           <span style={{ color: "#fff" }}>TRENER</span>{" "}
           <span style={{ color: "#ff8a00" }}>IWAN</span>
         </div>
-        <button onClick={switchLang} style={{ ...btn, borderRadius: 999, padding: "8px 14px", fontSize: 16, border: "1px solid #27a6ff", background: "transparent" }}>
+        <button onClick={switchLang} style={{ ...btn, borderRadius: 999, padding: "8px 14px", fontSize: 16, background: "transparent" }}>
           {t.lang} ↔ {t.langAlt}
         </button>
       </div>
@@ -438,7 +450,18 @@ export default function Home() {
             <label>{t.formMsg}</label>
             <textarea name="message" rows={3} style={{ padding: 12, borderRadius: 10, border: "1px solid #263445", background: "#0b121a", color: "#eef3f8" }} />
 
-            <button type="submit" style={{ ...btnPrimary, textAlign: "center" }}>
+            {/* ФІКС центрування тексту в кнопці */}
+            <button
+              type="submit"
+              style={{
+                ...btnPrimary,
+                textAlign: "center",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: 48, // ідеальний вертикальний центр
+              }}
+            >
               {t.formSend}
             </button>
           </form>
@@ -451,56 +474,4 @@ export default function Home() {
         <div style={{ ...max, display: "grid", gap: 16 }}>
           <div style={card}>
             <div style={{ fontWeight: 700 }}>{t.loc1}</div>
-            <a href="https://maps.google.com/?q=Sandomierska+112+Kielce" target="_blank" rel="noreferrer" style={{ ...btn, borderRadius: 12 }}>{t.maps}</a>
-          </div>
-          <div style={card}>
-            <div style={{ fontWeight: 700 }}>{t.loc2}</div>
-            <a href="https://maps.google.com/?q=Zagna%C5%84ska+92+Kielce" target="_blank" rel="noreferrer" style={{ ...btn, borderRadius: 12 }}>{t.maps}</a>
-          </div>
-        </div>
-      </section>
-
-      {/* REVIEWS */}
-      <section style={section}>
-        <div style={max}>
-          <h3 style={title}>{t.reviewsTitle}</h3>
-          <div style={{ display: "grid", gap: 14 }}>
-            {t.reviews.map((r, i) => (
-              <div key={i} style={{ ...card, textAlign: "left" }}>
-                <div style={{ fontWeight: 700, marginBottom: 6 }}>{r.name}</div>
-                <div style={{ opacity: 0.9 }}>{r.text}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer style={{ borderTop: "1px solid #151e29", textAlign: "center", padding: "36px 0 80px" }}>
-        <div style={{ fontWeight: 900, fontSize: 20, color: "#fff", marginBottom: 16 }}>{t.footerTitle}</div>
-        <div>
-          <a href={tg} target="_blank" rel="noreferrer" style={btn} onClick={()=>{ if (typeof window!=="undefined"&&window.gtag) gtag('event','click_telegram'); }}>{Icon.Telegram}<span>Telegram</span></a>
-          <a href={wa} target="_blank" rel="noreferrer" style={btn} onClick={()=>{ if (typeof window!=="undefined"&&window.gtag) gtag('event','click_whatsapp'); }}>{Icon.WhatsApp}<span>WhatsApp</span></a>
-          <a href={ig} target="_blank" rel="noreferrer" style={btn} onClick={()=>{ if (typeof window!=="undefined"&&window.gtag) gtag('event','click_instagram'); }}>{Icon.Instagram}<span>Instagram</span></a>
-          <a href={mail} style={btn} onClick={()=>{ if (typeof window!=="undefined"&&window.gtag) gtag('event','click_email'); }}>{Icon.Email}<span>Email</span></a>
-        </div>
-        <div style={{ fontSize: 13, opacity: 0.6, marginTop: 20 }}>{t.footerBrand}</div>
-      </footer>
-
-      {/* STICKY CTA (мобільний) */}
-      <div style={{ position: "fixed", bottom: 12, left: "50%", transform: "translateX(-50%)", zIndex: 60 }}>
-        <a href="#apply" style={{ ...btnPrimary, borderRadius: 999, padding: "12px 20px" }}>{t.ctaBook}</a>
-      </div>
-
-      {/* дрібні ефекти */}
-      <style jsx global>{`
-        a, button { will-change: transform; }
-        a:hover, button:hover { transform: translateY(-2px); }
-        @media (min-width: 820px) {
-          /* ховаємо sticky CTA на десктопі */
-          div[style*="position: fixed"][style*="bottom: 12px"] { display: none; }
-        }
-      `}</style>
-    </div>
-  );
-    }
+            <a href="https://maps.google.com/?q=Sandomierska+112+Kielce" target="_blank" rel="noreferrer" style
