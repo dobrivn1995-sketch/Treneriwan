@@ -30,10 +30,6 @@ export default function Home() {
       buyBlock: "Взяти блок занять",
       onlineTitle: "Онлайн-ведення — 500 zł/місяць",
       onlineNote: "План тренувань, харчування і підтримка онлайн. Ідеально, якщо ти не в Кельце.",
-      locTitle: "Де тренуємось (Кельце)",
-      loc1: "RMG — Sandomierska 112, Kielce",
-      loc2: "Endorfina — Zagnańska 92, Kielce",
-      maps: "Google Maps",
       formTitle: "Залиш заявку — я напишу особисто",
       formName: "Ім’я",
       formContact: "Телефон або Email",
@@ -42,8 +38,13 @@ export default function Home() {
       formOption2: "Онлайн-ведення",
       formMsg: "Коментар (необов’язково)",
       formSend: "Надіслати заявку 💪",
+      locTitle: "Де тренуємось (Кельце)",
+      loc1: "RMG — Sandomierska 112, Kielce",
+      loc2: "Endorfina — Zagnańska 92, Kielce",
+      maps: "Google Maps",
       footerTitle: "Написати мені",
-      footerBrand: "© " + new Date().getFullYear() + " Trener Iwan — Discipline. Power. Balance.",
+      footerBrand:
+        "© " + new Date().getFullYear() + " Trener Iwan — Discipline. Power. Balance.",
       lang: "🇺🇦",
       langAlt: "🇵🇱",
     },
@@ -69,10 +70,6 @@ export default function Home() {
       buyBlock: "Weź pakiet",
       onlineTitle: "Prowadzenie online — 500 zł/mies.",
       onlineNote: "Plan treningów, żywienia i wsparcie online. Idealne, jeśli nie jesteś w Kielcach.",
-      locTitle: "Gdzie trenujemy (Kielce)",
-      loc1: "RMG — Sandomierska 112, Kielce",
-      loc2: "Endorfina — Zagnańska 92, Kielce",
-      maps: "Google Maps",
       formTitle: "Zostaw zgłoszenie — odezwę się osobiście",
       formName: "Imię",
       formContact: "Telefon lub Email",
@@ -81,8 +78,13 @@ export default function Home() {
       formOption2: "Prowadzenie online",
       formMsg: "Komentarz (opcjonalnie)",
       formSend: "Wyślij zgłoszenie 💪",
+      locTitle: "Gdzie trenujemy (Kielce)",
+      loc1: "RMG — Sandomierska 112, Kielce",
+      loc2: "Endorfina — Zagnańska 92, Kielce",
+      maps: "Google Maps",
       footerTitle: "Napisz do mnie",
-      footerBrand: "© " + new Date().getFullYear() + " Trener Iwan — Discipline. Power. Balance.",
+      footerBrand:
+        "© " + new Date().getFullYear() + " Trener Iwan — Discipline. Power. Balance.",
       lang: "🇵🇱",
       langAlt: "🇺🇦",
     },
@@ -122,7 +124,16 @@ export default function Home() {
         <title>{t.h1} — Trener Iwan | Kielce</title>
       </Head>
 
-      {/* ФОРМА ЗАЯВКИ */}
+      {/* === Весь контент сайту вище (скорочено для зручності) === */}
+      {/* ONLINE */}
+      <section style={section}>
+        <div style={max}>
+          <h3 style={{ fontSize: 28, fontWeight: 900, marginBottom: 20 }}>{t.onlineTitle}</h3>
+          <p style={{ color: "#9bb7d4", marginBottom: 18 }}>{t.onlineNote}</p>
+        </div>
+      </section>
+
+      {/* 🔥 НОВИЙ БЛОК ФОРМИ */}
       <section style={section}>
         <div style={max}>
           <h3 style={{ fontSize: 28, fontWeight: 900, marginBottom: 20 }}>{t.formTitle}</h3>
@@ -157,6 +168,8 @@ export default function Home() {
           </form>
         </div>
       </section>
+
+      {/* === Далі залишаєш твій футер з іконками як був === */}
     </div>
   );
-}
+            }
