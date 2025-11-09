@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
 
 export default function Home() {
-  // ===== CONTACT LINKS (UTM готові, при бажанні поміняєш) =====
+  // ===== CONTACT LINKS (UTM готові) =====
   const utm = "&utm_source=site&utm_medium=cta&utm_campaign=landing";
   const wa = "https://wa.me/48796559143?text=" + encodeURIComponent("Привіт! Хочу тренування") + utm;
   const tg = "https://t.me/Grutos";
@@ -27,6 +27,13 @@ export default function Home() {
       aboutTitle: "Про мене",
       aboutText:
         "Я Іван — тренер із 9-річним досвідом. Працюю з початківцями, з відновленням після травм та онлайн. Принцип — чиста техніка, результат і повага до тіла.",
+
+      // NEW: Clients block
+      clientsTitle: "Кому я допомагаю",
+      clientsText1:
+        "До мене приходять програмісти, менеджери, викладачі — люди, які більшість дня сидять за комп’ютером. Разом ми відновлюємо поставу, укріплюємо спину й вчимо тіло працювати правильно.",
+      clientsText2:
+        "Без фанатизму. Без болю. Без показухи. Я допомагаю зробити тіло стабільним, щоб голова не боліла від болю. Для когось це повернення до руху, для когось — спосіб тримати себе в тонусі після 10 годин за ноутом.",
 
       priceTitle: "Ціни (конвертуються за регіоном)",
       priceNote: "База — PLN. Показуємо у вашій валюті автоматично.",
@@ -57,7 +64,7 @@ export default function Home() {
       reviews: [
         { name: "Наталія", text: "–8 кг за 2 місяці. Техніка без болю. Комфортно." },
         { name: "Олег", text: "Після травми спини повернувся до присідань. Безпечно." },
-        { name: "Марія", text: "Онлайн—чіткий план + підтримка. Є результат щотижня." },
+        { name: "Марія", text: "Онлайн — чіткий план + підтримка. Є результат щотижня." },
       ],
 
       footerTitle: "Написати мені",
@@ -82,6 +89,13 @@ export default function Home() {
       aboutTitle: "O mnie",
       aboutText:
         "Jestem Iwan — trener z 9-letnim doświadczeniem. Pomagam poprawić technikę, zrzucić wagę i wrócić do formy bez kontuzji.",
+
+      // NEW: Clients block
+      clientsTitle: "Komu pomagam",
+      clientsText1:
+        "Przychodzą do mnie programiści, menedżerowie, nauczyciele – ludzie, którzy większość dnia spędzają przy komputerze. Wspólnie odbudowujemy postawę, wzmacniamy plecy i uczymy ciało pracować poprawnie.",
+      clientsText2:
+        "Bez fanatyzmu. Bez bólu. Bez pokazówki. Pomagam zrobić ciało stabilnym, żeby głowa nie bolała od napięcia. Dla jednych to powrót do ruchu, dla innych – sposób na utrzymanie formy po 10 godzinach przed monitorem.",
 
       priceTitle: "Cennik (przeliczany wg regionu)",
       priceNote: "Bazą jest PLN. Pokazujemy automatycznie w Twojej walucie.",
@@ -211,7 +225,6 @@ export default function Home() {
   }, []);
 
   // ====== СТИЛІ ======
-  // Преміум фон: градієнти + SVG-патерн (сітка + “інвентар”)
   const pageBg = {
     backgroundColor: "#0b0f14",
     color: "#eef3f8",
@@ -269,7 +282,6 @@ export default function Home() {
   const highlight = { border: "2px solid #ff8a00", borderRadius: 14, padding: 16, marginTop: 10, display: "inline-block" };
   const strike = { textDecoration: "line-through", opacity: 0.6, marginRight: 8 };
 
-  // SVG іконки
   const Icon = {
     Telegram: (<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21.5 3.5L2.6 10.6c-.8.3-.8 1.4 0 1.7l4.6 1.6 1.7 5c.2.8 1.2.9 1.7.3l2.9-3.1 4.8 3.6c.6.5 1.5.1 1.7-.7l3-17c.2-.9-.7-1.6-1.5-1.4Z" stroke="#cfe9ff" strokeWidth="1.5"/></svg>),
     WhatsApp: (<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20.5 12a8.5 8.5 0 1 1-3.1-6.6" stroke="#cfe9ff" strokeWidth="1.5"/><path d="M7.2 19.6 5 21l.5-2.6" stroke="#cfe9ff" strokeWidth="1.5" strokeLinecap="round"/><path d="M16.8 14.6c-.3.9-1.7 1.1-2.4.9-1.2-.4-2.7-1.4-3.8-2.6s-2.2-2.6-2.6-3.8c-.2-.7 0-2.1.9-2.4.4-.1.8 0 1.1.3l1.1 1.1c.3.3.4.7.3 1.1-.1.4-.3.7-.6 1l.6.9c.5.7 1.2 1.4 1.9 1.9l.9.6c.3-.3.6-.5 1-.6.4-.1.8 0 1.1.3l1.1 1.1c.3.3.4.8.3 1.1Z" fill="none" stroke="#cfe9ff" strokeWidth="1.5" strokeLinecap="round"/></svg>),
@@ -354,6 +366,15 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CLIENT TYPES (NEW) */}
+      <section style={section}>
+        <div style={max}>
+          <h3 style={title}>{t.clientsTitle}</h3>
+          <p style={{ maxWidth: 700, margin: "0 auto", lineHeight: 1.7 }}>{t.clientsText1}</p>
+          <p style={{ maxWidth: 700, margin: "16px auto 0", lineHeight: 1.7 }}>{t.clientsText2}</p>
+        </div>
+      </section>
+
       {/* PRICING */}
       <section style={section}>
         <div style={max}>
@@ -388,6 +409,8 @@ export default function Home() {
       <section id="apply" style={section}>
         <div style={max}>
           <h3 style={title}>{t.formTitle}</h3>
+        </div>
+        <div style={{ ...max }}>
           <form
             action="https://formsubmit.co/Dobr.ivn1995@gmail.com"
             method="POST"
@@ -480,4 +503,4 @@ export default function Home() {
       `}</style>
     </div>
   );
-}
+    }
