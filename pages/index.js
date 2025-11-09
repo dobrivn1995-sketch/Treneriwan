@@ -22,7 +22,7 @@ export default function Home() {
 
       aboutTitle: "Про мене",
       aboutText:
-        "Я Іван — тренер із 9-річним досвідом. Допомагаю клієнтам безпечно ставити техніку, скидати вагу, набирати силу та тримати форму роками. Треную в залах RMG (Sandomierska 112) та Endorfina (Zagnańska 92), а також веду онлайн із повною підтримкою.",
+        "Я Іван — тренер із 9-річним досвідом. Допомагаю поставити техніку без болю, схуднути, набрати силу і тримати форму роками. Треную в RMG (Sandomierska 112) та Endorfina (Zagnańska 92), а також веду онлайн із повною підтримкою.",
       whyPick: "Чому мене обирають",
       why1: "Індивідуальний план під твій графік і рівень",
       why2: "Техніка без болю — здорові суглоби і спина",
@@ -65,7 +65,8 @@ export default function Home() {
       rev2: "“З нуля поставили техніку, з’явився прогрес і мотивація. Рекомендую!”",
 
       contact: "Питання по розкладу — пиши у",
-      footer: "© " + new Date().getFullYear() + " Ivan Trainer",
+      footerBrand: "© " + new Date().getFullYear() + " Trener Iwan — Discipline. Power. Balance.",
+      footerTitle: "Написати мені",
       lang: "UA",
       langAlt: "PL",
     },
@@ -81,7 +82,7 @@ export default function Home() {
 
       aboutTitle: "O mnie",
       aboutText:
-        "Nazywam się Iwan — jestem trenerem z 9-letnim doświadczeniem. Pomagam bezpiecznie opanować technikę, schudnąć, zbudować siłę i utrzymać formę na lata. Prowadzę treningi w klubach RMG (Sandomierska 112) i Endorfina (Zagnańska 92) oraz online z pełnym wsparciem.",
+        "Nazywam się Iwan — trener z 9-letnim doświadczeniem. Pomagam bezpiecznie opanować technikę, schudnąć, zbudować siłę i utrzymać formę na lata. Prowadzę treningi w RMG (Sandomierska 112) i Endorfina (Zagnańska 92), a także online z pełnym wsparciem.",
       whyPick: "Dlaczego warto",
       why1: "Plan dopasowany do grafiku i poziomu",
       why2: "Technika bez bólu — zdrowe stawy i kręgosłup",
@@ -124,7 +125,8 @@ export default function Home() {
       rev2: "„Od zera ogarnęliśmy technikę, pojawił się progres i motywacja. Polecam!”",
 
       contact: "Pytania o grafik — napisz na",
-      footer: "© " + new Date().getFullYear() + " Ivan Trainer",
+      footerBrand: "© " + new Date().getFullYear() + " Trener Iwan — Discipline. Power. Balance.",
+      footerTitle: "Napisz do mnie",
       lang: "PL",
       langAlt: "UA",
     },
@@ -135,7 +137,7 @@ export default function Home() {
 
   useEffect(() => {
     const saved = typeof window !== "undefined" && localStorage.getItem("lang");
-    if (saved && (saved === "ua" || saved === "pl")) setLang(saved);
+    if (saved === "ua" || saved === "pl") setLang(saved);
   }, []);
   const switchLang = () => {
     const next = lang === "ua" ? "pl" : "ua";
@@ -157,7 +159,19 @@ export default function Home() {
   const btnPrimary = { ...btn, background: "#ff8a00", color: "#0b0f14", borderColor: "#ff8a00" };
   const btnOutline = { ...btn, background: "transparent", color: "#cfe9ff", borderColor: "#27a6ff" };
   const heroCard = { borderRadius: 20, overflow: "hidden", border: "1px solid #263445", background: "#0e141c" };
-  const heroImg = { width: "100%", height: "100%", minHeight: 420, background: "url(/ivan-hero.jpg) center/cover no-repeat" };
+  const heroImg = {
+    width: "100%",
+    height: "100%",
+    minHeight: 420,
+    // каскад джерел, щоб підхопити будь-яке з трьох розширень
+    background: `
+      url(/ivan-hero.jpg),
+      url(/ivan-hero.jpeg),
+      url(/ivan-hero.png)`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  };
 
   const section = { padding: "44px 0", borderTop: "1px solid #151e29" };
   const title = { fontSize: 28, fontWeight: 900, textAlign: "center", margin: "0 0 14px" };
@@ -184,7 +198,7 @@ export default function Home() {
         <meta property="og:image" content="/ivan-hero.jpg" />
       </Head>
 
-      {/* LANG SWITCH */}
+      {/* LANG SWITCH BAR */}
       <div style={{ position: "sticky", top: 0, zIndex: 5, background: "#0b0f14", borderBottom: "1px solid #151e29" }}>
         <div style={{ ...max, display: "flex", alignItems: "center", justifyContent: "space-between", height: 56 }}>
           <div style={{ fontWeight: 900 }}>TRENER IWAN</div>
@@ -208,7 +222,9 @@ export default function Home() {
               <a href={wa} target="_blank" rel="noreferrer" style={btnOutline}>{t.ctaOnline}</a>
             </div>
           </div>
-          <div style={heroCard}><div style={heroImg} /></div>
+          <div style={heroCard}>
+            <div style={heroImg} />
+          </div>
         </div>
       </header>
 
@@ -225,7 +241,19 @@ export default function Home() {
               </div>
             </div>
             <div style={{ ...card, padding: 0, overflow: "hidden" }}>
-              <div style={{ width: "100%", height: 320, background: "url(/ivan-about.jpg) center/cover no-repeat" }} />
+              <div
+                style={{
+                  width: "100%",
+                  height: 320,
+                  background: `
+                    url(/ivan-about.jpg),
+                    url(/ivan-about.jpeg),
+                    url(/ivan-about.png)`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
+              />
             </div>
             <div style={card}>
               <div style={{ fontWeight: 900, marginBottom: 10 }}>{t.whyPick}</div>
@@ -290,7 +318,19 @@ export default function Home() {
               </div>
             </div>
             <div style={{ ...card, padding: 0, overflow: "hidden" }}>
-              <div style={{ width: "100%", height: 320, background: "url(/ivan-gym.jpg) center/cover no-repeat" }} />
+              <div
+                style={{
+                  width: "100%",
+                  height: 320,
+                  background: `
+                    url(/ivan-gym.jpg),
+                    url(/ivan-gym.jpeg),
+                    url(/ivan-gym.png)`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
+              />
             </div>
             <div style={card}>
               <div style={{ fontWeight: 900, color: "#7dd3ff", marginBottom: 10 }}>{t.revTitle}</div>
@@ -322,45 +362,47 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <{/* FOOTER */}
-<footer style={{ borderTop: "1px solid #151e29", background: "#0b0f14" }}>
-  <div
-    style={{
-      ...max,
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      gap: 10,
-      padding: "28px 0",
-      color: "#9bb7d4",
-      textAlign: "center",
-    }}
-  >
-    <div style={{ fontWeight: 900, fontSize: 18, color: "#eaf3ff" }}>
-      {lang === "ua" ? "Написати мені" : "Napisz do mnie"}
-    </div>
+      {/* FOOTER — "Написати мені / Napisz do mnie" */}
+      <footer style={{ borderTop: "1px solid #151e29", background: "#0b0f14" }}>
+        <div
+          style={{
+            ...max,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 10,
+            padding: "28px 0",
+            color: "#9bb7d4",
+            textAlign: "center",
+          }}
+        >
+          <div style={{ fontWeight: 900, fontSize: 18, color: "#eaf3ff" }}>
+            {lang === "ua" ? dict.ua.footerTitle : dict.pl.footerTitle}
+          </div>
 
-    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 14, fontSize: 16 }}>
-      <a href={tg} target="_blank" rel="noreferrer" style={{ color: "#7dd3ff", textDecoration: "none" }}>
-        Telegram
-      </a>
-      <span style={{ opacity: 0.4 }}>•</span>
-      <a href={wa} target="_blank" rel="noreferrer" style={{ color: "#ffd7a6", textDecoration: "none" }}>
-        WhatsApp
-      </a>
-      <span style={{ opacity: 0.4 }}>•</span>
-      <a href={ig} target="_blank" rel="noreferrer" style={{ color: "#9edbff", textDecoration: "none" }}>
-        Instagram
-      </a>
-      <span style={{ opacity: 0.4 }}>•</span>
-      <a href={mail} target="_blank" rel="noreferrer" style={{ color: "#f4c27c", textDecoration: "none" }}>
-        Email
-      </a>
-    </div>
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 14, fontSize: 16 }}>
+            <a href={tg} target="_blank" rel="noreferrer" style={{ color: "#7dd3ff", textDecoration: "none" }}>
+              Telegram
+            </a>
+            <span style={{ opacity: 0.4 }}>•</span>
+            <a href={wa} target="_blank" rel="noreferrer" style={{ color: "#ffd7a6", textDecoration: "none" }}>
+              WhatsApp
+            </a>
+            <span style={{ opacity: 0.4 }}>•</span>
+            <a href={ig} target="_blank" rel="noreferrer" style={{ color: "#9edbff", textDecoration: "none" }}>
+              Instagram
+            </a>
+            <span style={{ opacity: 0.4 }}>•</span>
+            <a href={mail} style={{ color: "#f4c27c", textDecoration: "none" }}>
+              Email
+            </a>
+          </div>
 
-    <div style={{ fontSize: 13, opacity: 0.6, marginTop: 10 }}>
-      © {new Date().getFullYear()} Trener Iwan — Discipline. Power. Balance.
+          <div style={{ fontSize: 13, opacity: 0.6, marginTop: 10 }}>
+            {lang === "ua" ? dict.ua.footerBrand : dict.pl.footerBrand}
+          </div>
+        </div>
+      </footer>
     </div>
-  </div>
-</footer>
+  );
+        }
