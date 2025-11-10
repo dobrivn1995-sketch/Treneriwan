@@ -28,6 +28,17 @@ export default function Home() {
       aboutText:
         "Я Іван — тренер із 9-річним досвідом. Працюю з початківцями, з відновленням після травм та онлайн. Принцип — чиста техніка, результат і повага до тіла.",
 
+      // ▼ НОВИЙ стиснутий блок "Про мене 2.0"
+      aboutLiteTitle: "Давайте знайомитись 👋",
+      aboutLite: [
+        "Мене звати Іван — персональний тренер із 9-річним досвідом. Допоміг понад 1000 клієнтам знайти баланс між тілом і психікою.",
+        "🏋️‍♂️ Без виснаження і жорстких дієт. Я за стійкий результат і здорове тіло.",
+        "🧠 Індивідуальний підхід: укріплюємо спину, виправляємо поставу, повертаємо легкість руху.",
+        "👶 Після пологів допомагаю повернути форму і знову полюбити себе.",
+        "⏳ Без вікових обмежень: 15–65 років — результат можливий для кожного.",
+        "Почати ніколи не пізно. Найкращий момент — зараз.",
+      ],
+
       clientsTitle: "Кому я допомагаю",
       clientsText1:
         "До мене приходять програмісти, менеджери, викладачі — люди, які більшість дня сидять за комп’ютером. Разом ми відновлюємо поставу, укріплюємо спину й вчимо тіло працювати правильно.",
@@ -87,13 +98,24 @@ export default function Home() {
 
       aboutTitle: "O mnie",
       aboutText:
-        "Jestem Iwan — trener z 9-letnim doświadczeniem. Pomagam poprawić technikę, zrzucić wagę i wrócić do formy bez kontuzji.",
+        "Jestem Iwan — trener z 9-letnim doświadczeniem. Pomagam początkującym, po kontuzjach oraz online. Zasada — czysta technika, efekt i szacunek do ciała.",
+
+      // ▼ Nowy blok skrócony
+      aboutLiteTitle: "Poznajmy się 👋",
+      aboutLite: [
+        "Nazywam się Iwan — trener personalny z 9-letnim doświadczeniem. Pomogłem ponad 1000 osobom znaleźć balans między ciałem a głową.",
+        "🏋️‍♂️ Bez wycieńczenia i drakońskich diet. Stawiam na trwały efekt i zdrowe ciało.",
+        "🧠 Indywidualne podejście: wzmacniamy plecy, korygujemy postawę, przywracamy lekkość ruchu.",
+        "👶 Po porodzie pomagam wrócić do formy i na nowo polubić swoje ciało.",
+        "⏳ Bez limitu wieku: 15–65 lat — efekt jest możliwy dla każdego.",
+        "Najlepszy moment, by zacząć — teraz.",
+      ],
 
       clientsTitle: "Komu pomagam",
       clientsText1:
-        "Przychodzą do mnie programiści, menedżerowie, nauczyciele – osoby pracujące wiele godzin przy komputerze. Odbudowujemy postawę i wzmacniamy plecy.",
+        "Przychodzą do mnie programiści, menedżerowie, nauczyciele – osoby spędzające większość dnia przy komputerze. Odbudowujemy postawę, wzmacniamy plecy i uczymy ciało pracować poprawnie.",
       clientsText2:
-        "Bez fanatyzmu. Bez bólu. Pomagam zrobić ciało stabilnym i utrzymać formę po 10h przed monitorem.",
+        "Bez fanatyzmu. Bez bólu. Bez pokazówki. Pomagam zrobić ciało stabilnym – dla jednych to powrót do ruchu, dla innych forma po 10h przy komputerze.",
 
       priceTitle: "Cennik (przeliczany wg regionu)",
       priceNote: "Bazą jest PLN. Pokazujemy automatycznie w Twojej walucie.",
@@ -160,7 +182,6 @@ export default function Home() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-
     const savedCur = localStorage.getItem("currency");
     if (savedCur && symbol[savedCur]) setCurrency(savedCur);
 
@@ -270,14 +291,14 @@ export default function Home() {
     gap: 8,
     margin: "6px",
     textAlign: "center",
-    transition: "transform .2s ease"
+    transition: "transform .2s ease, box-shadow .2s ease"
   };
-  const btnPrimary = { ...btn, background: "#ff8a00", borderColor: "#ff8a00", color: "#0b0f14" };
+  const btnPrimary = { ...btn, background: "#ff8a00", borderColor: "#ff8a00", color: "#0b0f14", boxShadow: "0 6px 14px rgba(255,138,0,.18)" };
 
-  const title = { fontSize: 28, fontWeight: 900, marginBottom: 14 };
+  const title = { fontSize: 28, fontWeight: 900, marginBottom: 14, letterSpacing: 0.2 };
   const note = { color: "#9bb7d4", marginBottom: 18 };
-  const card = { border: "2px solid #263445", borderRadius: 16, padding: 16, backdropFilter: "saturate(120%) blur(0.5px)" };
-  const highlight = { border: "2px solid #ff8a00", borderRadius: 14, padding: 16, marginTop: 10, display: "inline-block" };
+  const card = { border: "2px solid #263445", borderRadius: 16, padding: 16, backdropFilter: "saturate(120%) blur(0.5px)", boxShadow: "0 10px 30px rgba(0,0,0,.25)" };
+  const highlight = { border: "2px solid #ff8a00", borderRadius: 14, padding: 16, marginTop: 10, display: "inline-block", background: "rgba(255,138,0,.08)" };
   const strike = { textDecoration: "line-through", opacity: 0.6, marginRight: 8 };
 
   const Icon = {
@@ -294,10 +315,7 @@ export default function Home() {
     if (!heroCtaRef.current) return;
     const el = heroCtaRef.current;
     const io = new IntersectionObserver(
-      (entries) => {
-        const isVisible = entries[0].isIntersecting;
-        setShowSticky(!isVisible);
-      },
+      (entries) => { setShowSticky(!entries[0].isIntersecting); },
       { root: null, threshold: 0.1 }
     );
     io.observe(el);
@@ -346,20 +364,16 @@ export default function Home() {
           <h1 style={h1}>{t.h1}</h1>
           <h2 style={h2}>{t.h2}</h2>
           <p style={lead} dangerouslySetInnerHTML={{ __html: t.heroLead }} />
-          <div>
-            <a ref={heroCtaRef} href="#apply" style={btnPrimary}>
-              {t.ctaBook}
-            </a>
-          </div>
+          <div><a ref={heroCtaRef} href="#apply" style={btnPrimary}>{t.ctaBook}</a></div>
         </div>
       </header>
-
-      {/* (прибрано жовтий розділювач) */}
 
       {/* STRENGTHS */}
       <section style={section}>
         <div style={max}>
           <h3 style={title}>{t.strengthsTitle}</h3>
+        </div>
+        <div style={{ ...max }}>
           <div style={{ ...card, maxWidth: 700, margin: "0 auto" }}>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 8 }}>
               {t.strengths.map((s, i) => (
@@ -374,11 +388,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ABOUT */}
+      {/* ABOUT (оригінальний короткий) */}
       <section style={section}>
         <div style={max}>
           <h3 style={title}>{t.aboutTitle}</h3>
           <p style={{ maxWidth: 700, margin: "0 auto", lineHeight: 1.7 }}>{t.aboutText}</p>
+        </div>
+      </section>
+
+      {/* ABOUT LITE (НОВИЙ БЛОК) */}
+      <section style={{ ...section, paddingTop: 24 }}>
+        <div style={max}>
+          <h3 style={title}>{t.aboutLiteTitle}</h3>
+          <div style={{ ...card, maxWidth: 780, margin: "0 auto", textAlign: "left" }}>
+            {t.aboutLite.map((line, idx) => (
+              <p key={idx} style={{ margin: "10px 0", lineHeight: 1.7 }}>
+                {line.includes("Іван") || line.includes("Iwan") ? <b>{line}</b> : line}
+              </p>
+            ))}
+            <div style={{ marginTop: 14, textAlign: "center" }}>
+              <a href="#apply" style={btnPrimary}>{t.ctaBook}</a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -526,12 +557,12 @@ export default function Home() {
         </div>
       )}
 
-      {/* Глобальні правки: повністю чорний фон, без «білих рамок» */}
+      {/* Глобальні правки */}
       <style jsx global>{`
         html, body, #__next { height: 100%; background: #0b0f14; }
         body { margin: 0; }
-        a, button { will-change: transform; }
-        a:hover, button:hover { transform: translateY(-2px); }
+        a, button { will-change: transform, box-shadow; }
+        a:hover, button:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(255,138,0,.18); }
         @media (max-width: 420px) {
           a[style], button[style] {
             padding: 9px 14px !important;
